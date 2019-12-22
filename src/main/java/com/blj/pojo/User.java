@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @author BaiLiJun  on 2019/12/20
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
 public class User implements Serializable {
@@ -24,6 +23,13 @@ public class User implements Serializable {
     private String password;
 
 
+    public User() {}
+    public User(Long id) {
+        this.id = id;
+    }
 
-
+    public User(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.SQLOutput;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import java.util.function.*;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class lambdaTest {
+public class LambdaTest {
 
     List<User> list = Arrays.asList(
             new User(1L, "zhangsan", 29, "123456"),
@@ -31,7 +31,7 @@ public class lambdaTest {
 
 
     @Test
-    public void test1() {
+    public void testSort() {
         //如果年龄相同，则比较名字
         Collections.sort(list, (o1, o2) -> {
             if (o1.getAge() == o2.getAge()) {
@@ -73,12 +73,12 @@ public class lambdaTest {
      * void accept(T t);
      */
     @Test
-    public void test3() {
-        consumerTest(1000D, (d) -> System.out.println("买手机消费了：" + d + "元"));
+    public void consumerTest() {
+        consumerHandle(1000D, (d) -> System.out.println("买手机消费了：" + d + "元"));
     }
 
 
-    public void consumerTest(Double d, Consumer<Double> consumer) {
+    public void consumerHandle(Double d, Consumer<Double> consumer) {
         consumer.accept(d);
     }
 
@@ -169,27 +169,87 @@ public class lambdaTest {
     }
 
     /**
-     * BiFunction<T, U, R>是Function<T,R> 的子接口
+     * BiFunction<T, U, R>
+     * 是Function<T,R> 的子接口
      * R apply(T t, U u);
      */
     @Test
-    public void biFunctionTest(){
+    public void biFunctionTest1() {
         String s = strHandle2("\t\t\t hello", "lambda", (str1, str2) -> {
             String trim = str1.trim();
             String s1 = str2.toUpperCase();
             return trim + s1;
         });
         System.out.println(s);
+
+        BiFunction<String, String, String> fun = (x, y) -> {
+            String trim = x.trim();
+            String s1 = y.toUpperCase();
+            return trim + s1;
+        };
+
+        String world = fun.apply("\t\t hello ", "world");
+        System.out.println(world);
+
     }
 
 
     //需求：用于处理2个字符串操作
-    public String strHandle2(String str1,String str2, BiFunction<String, String,String> fun) {
-        String s = fun.apply(str1,str2);
+    public String strHandle2(String str1, String str2, BiFunction<String, String, String> fun) {
+        String s = fun.apply(str1, str2);
 
         return s;
     }
 
+
+    @Test
+    public void testBiFunction2() {
+        Long aLong = op2(100L, 200L, (x, y) -> x + y);
+        System.out.println(aLong);
+
+        BiFunction<Long, Long, Long> fun = (t1, t2) -> t1 * t2;
+        Long apply = fun.apply(2L, 4L);
+        System.out.println(apply);
+
+
+    }
+
+    public Long op2(Long x, Long y, BiFunction<Long, Long, Long> fun) {
+        Long apply = fun.apply(x, y);
+        return apply;
+    }
+
+
+    /**
+     * BiConsumer<T, U>
+     * 是消费型函数Consumer<T>的子接口
+     * void accept(T t, U u);
+     */
+    @Test
+    public void biConsumerTest() {
+        biConsumerHandle(1000D, 1000D, (d1, d2) -> {
+            System.out.println("这次共计消费了：" + (d1 + d2) + "元！");
+        });
+    }
+
+    //需求：处理2个参数的消费型函数接口
+    public void biConsumerHandle(Double d1, Double d2, BiConsumer<Double, Double> consumer) {
+        consumer.accept(d1, d2);
+    }
+
+@Test
+    public void testBiPredicate() {
+        BiPredicate<String, String> pre = (x, y) -> {
+          if (x.length()>3&y.substring(0,1).equals("b")){
+              return true;
+          }
+            return false;
+        };
+
+        boolean test = pre.test("https", "baidu");
+        System.out.println("test = " + test);
+
+    }
 
 
 }
