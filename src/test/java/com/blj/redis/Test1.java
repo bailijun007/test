@@ -90,25 +90,7 @@ public class Test1 {
 
 
 
-    /**
-     * 需要 commons-lang3 jar包
-     * 集合转string，并以逗号分割
-     */
-    @Test
-    public void test3() {
-        List<User> list = new ArrayList<>();
-        list.add(new User(1L, "zhangsan", 23, "123456"));
-        list.add(new User(2L, "lisi", 19, "123456"));
-        list.add(new User(3L, "wangwu", 26, "123456"));
-        list.add(new User(4L, "zhaoliu", 28, "123456"));
-        list.add(new User(5L, "wuming", 30, "123456"));
 
-        List<Long> ids = list.stream().map(User::getId).collect(Collectors.toList());
-        System.out.println(ids.toString());
-        String str = StringUtils.join(ids.toArray(), ",");
-        System.out.println("str = " + str);
-
-    }
 
 
     @Test

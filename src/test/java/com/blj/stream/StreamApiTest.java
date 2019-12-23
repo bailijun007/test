@@ -52,19 +52,7 @@ public class StreamApiTest {
 
     }
 
-    /**
-     * 某个数据库字段，存储的是逗号分隔的id，可能是Integer也可能是Long型的，
-     * 比如：1,2,3等；需要转换成Long型的List或者Integer型的List
-     */
-    @Test
-    public void test2() {
-        String ids = "1,2,3,4,5,6";
-        List<Long> listIds = Arrays.asList(ids.split(",")).stream().map(s -> Long.parseLong(s.trim())).collect(Collectors.toList());
-        System.out.println("listIds = " + listIds);
-        listIds.add(7L);
-        System.out.println("listIds = " + listIds);
-        //        System.out.println(Arrays.toString(listIds .toArray()));
-    }
+
 
 
 
