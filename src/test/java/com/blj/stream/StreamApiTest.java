@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -49,8 +50,22 @@ public class StreamApiTest {
         Stream<Integer> stream4 = Stream.generate(() -> (int) (Math.random()*100));
         stream4.limit(5).forEach(System.out::println);
 
-
     }
+
+    /**
+     * 某个数据库字段，存储的是逗号分隔的id，可能是Integer也可能是Long型的，
+     * 比如：1,2,3等；需要转换成Long型的List或者Integer型的List
+     */
+    @Test
+    public void test2() {
+        String ids = "1,2,3,4,5,6";
+        List<Long> listIds = Arrays.asList(ids.split(",")).stream().map(s -> Long.parseLong(s.trim())).collect(Collectors.toList());
+        System.out.println("listIds = " + listIds);
+        listIds.add(7L);
+        System.out.println("listIds = " + listIds);
+        //        System.out.println(Arrays.toString(listIds .toArray()));
+    }
+
 
 
 }

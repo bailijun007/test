@@ -58,4 +58,18 @@ public class Test3 {
     }
 
 
+    @Test
+    public void test3() {
+        // 第一步：排序   reverseRange：按照分数由大到小排序（指定位置区间）
+        Set<String> strings = templateDB5.boundZSetOps("markPrice:pc:history:BTC:BTC_USD").reverseRange(0, 0);
+//        System.out.println("strings = " + strings);
+        ArrayList<String> list = new ArrayList<>(strings);
+//        System.out.println(list);
+        String s = list.get(0);
+        String[] split = s.split("#");
+        System.out.println(split[0]);
+        System.out.println(split[1]);
+
+    }
+
 }
