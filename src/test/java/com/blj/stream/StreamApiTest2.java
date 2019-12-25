@@ -8,11 +8,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Stream中间操作
+ * Stream中间操作：不会执行任何操作
  *
  * @author BaiLiJun on 2019/12/22 0022
  */
@@ -36,13 +37,28 @@ public class StreamApiTest2 {
      * skip(n) -跳过元素，返回一个扔掉了前n个元素的流。若流中元素不足n个,则返回一个空流。与limit(n)互补
      * distinct- 筛选，通过流所生成元素的hashCode() 和equals() 去除重复元素
      */
+
+    //内部迭代:迭代操作由Stream API完成
     @Test
     public void testSkip() {
-        list.stream()
+        //Stream中间操作：不会执行任何操作
+        Stream<User> stream = list.stream()
                 .filter(user -> user.getAge() > 24)
-                .skip(3L)
-                .forEach(System.out::println);
+                .skip(3L);
 
+        //终止操作(终端操作)：一次性执行全部内容， 即“情性求值”
+        stream.forEach(System.out::println);
+
+
+    }
+
+    //外部迭代
+    @Test
+    public void test1() {
+        Iterator<User> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 
 
@@ -86,6 +102,31 @@ public class StreamApiTest2 {
 
         }
         return list.stream();
+
+    }
+
+
+    /**
+     * 排序
+     * sorted()- -自然排序(Comparable)
+     * sorted(Comparator com)- 定制排序(Comparator)
+     */
+    @Test
+    public void test2() {
+
+        List<String> list1 = Arrays.asList( "cc","aa", "bb", "dd");
+
+        list1.stream().sorted().forEach(System.out::println);
+
+        System.out.println("----------------------");
+
+        list.stream().sorted((u1,u2)->{
+            if (u1.getAge().equals(u2.getAge())){
+                return u1.getName().compareTo(u2.getName());
+            }else {
+                return u1.getAge().compareTo(u2.getAge());
+            }
+        }).forEach(System.out::println);
 
     }
 
