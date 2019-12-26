@@ -54,4 +54,11 @@ public class StringTest {
     }
 
 
+    @Test
+    public void test1() {
+        String ids = "1,2,3,4,5,6";
+        List<Long> list = Arrays.asList(ids.split(",")).stream().map(s -> Long.parseLong(s.trim())).collect(Collectors.toList());
+        list.forEach(System.out::println);
+    }
+
 }
