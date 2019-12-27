@@ -22,7 +22,7 @@ public interface PcAccountMapper {
 
     public List<PcAccount> queryList(@Param("userIdList") List<Long> userIdList);
 
-    public List<PcAccount> queryList2(Map<String,Object> map);
+    public List<PcAccount> queryList2(Map<String, Object> map);
 
 
 }

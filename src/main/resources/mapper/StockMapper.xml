@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blj.mapper.StockMapper">
+
+    <resultMap type="com.blj.pojo.Stock" id="Stock">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="stock" property="stock"/>
+    </resultMap>
+
+    <sql id="simple_where">
+        <where>
+            <if test="id!=null">and id =#{id}</if>
+            <if test="name!=null and name!=''">and name=#{name}</if>
+            <if test="stock!=null and stock!=''">and stock=#{stock}</if>
+        </where>
+
+    </sql>
+
+    <sql id="Base_Column_List">
+		id,`name`,stock
+	</sql>
+
+
+    <select id="queryList" resultMap="Stock">
+        select
+        <include refid="Base_Column_List"/>
+        from t_stock
+        <include refid="simple_where"/>
+        order by id desc
+    </select>
+
+    <select id="queryOne" resultMap="Stock">
+        select
+        <include refid="Base_Column_List"/>
+        from t_stock
+        <include refid="simple_where"/>
+        order by id desc
+    </select>
+
+    <update id="update">
+        update t_stock
+        <set>
+            <if test="name!=null and name!=''">
+                 `name`=#{name},
+            </if>
+            <if test="stock!=null">
+                 stock=#{stock}
+            </if>
+            where id=#{id}
+        </set>
+    </update>
+
+</mapper>
