@@ -87,8 +87,20 @@ public class StreamApiTest3 {
         Integer ageSum = list.stream()
                 .map(u -> u.getAge())
                 .reduce(0, Integer::sum);
-
         System.out.println("ageSum = " + ageSum);
+
+
+        long sum = list.stream()
+                .mapToLong(u -> u.getId()).sum();
+        System.out.println(sum);
+    }
+
+
+
+    @Test
+    public void test4() {
+        Optional<String> first = list.stream().filter(user -> user.getAge() > 28).map(User::getName).findFirst();
+        System.out.println(first.orElse("没有找到"));
 
     }
 }

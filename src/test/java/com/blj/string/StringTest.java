@@ -61,4 +61,12 @@ public class StringTest {
         list.forEach(System.out::println);
     }
 
+
+    @Test
+    public void test4() {
+        String asset = "BTC,ETH,";
+        List<String> assetList = Arrays.asList(asset.split(",")).stream().map(s -> s.trim()).collect(Collectors.toList());
+        System.out.println(assetList);
+
+    }
 }
