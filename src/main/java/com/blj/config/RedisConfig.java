@@ -51,12 +51,12 @@ public class RedisConfig {
     @Bean("cf0")
     public RedisConnectionFactory redisConnectionFactory0() {
         RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
-        conf.setHostName("192.168.0.68");
-        RedisPassword password = RedisPassword.of("456");
-        conf.setPassword(password);
-        conf.setPort(16375);
-//        conf.setHostName("127.0.0.1");
-//        conf.setPort(6379);
+//        conf.setHostName("192.168.0.68");
+//        RedisPassword password = RedisPassword.of("456");
+//        conf.setPassword(password);
+//        conf.setPort(16375);
+        conf.setHostName("127.0.0.1");
+        conf.setPort(6379);
         LettuceConnectionFactory cf = new LettuceConnectionFactory(conf);
         cf.setDatabase(0);
         return cf;
@@ -65,12 +65,12 @@ public class RedisConfig {
     @Bean("cf5")
     public RedisConnectionFactory redisConnectionFactory5() {
         RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
-        conf.setHostName("192.168.0.68");
-        RedisPassword password = RedisPassword.of("456");
-        conf.setPassword(password);
-        conf.setPort(16375);
-//        conf.setHostName("127.0.0.1");
-//        conf.setPort(6379);
+//        conf.setHostName("192.168.0.68");
+//        RedisPassword password = RedisPassword.of("456");
+//        conf.setPassword(password);
+//        conf.setPort(16375);
+        conf.setHostName("127.0.0.1");
+        conf.setPort(6379);
         LettuceConnectionFactory cf = new LettuceConnectionFactory(conf);
         cf.setDatabase(5);
         return cf;

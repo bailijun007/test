@@ -34,7 +34,6 @@ public class StringTest {
     }
 
     /**
-     * 需要 commons-lang3 jar包
      * 集合转string，并以逗号分割
      */
     @Test
@@ -46,14 +45,24 @@ public class StringTest {
         list.add(new User(4L, "zhaoliu", 28, "123456"));
         list.add(new User(5L, "wuming", 30, "123456"));
 
+        //方式一：需要 commons-lang3 jar包
         List<Long> ids = list.stream().map(User::getId).collect(Collectors.toList());
-        System.out.println(ids.toString());
         String str = StringUtils.join(ids.toArray(), ",");
         System.out.println("str = " + str);
+
+
+        System.out.println("---------------------------");
+
+
+        //方式2：需要 jdk1.8
+        String s1 = list.stream().map(u -> String.valueOf(u.getId())).collect(Collectors.joining(","));
+        System.out.println("s1 = " + s1);
+
 
     }
 
 
+    //字符串转集合
     @Test
     public void test1() {
         String ids = "1,2,3,4,5,6";
@@ -62,6 +71,7 @@ public class StringTest {
     }
 
 
+    //字符串截取
     @Test
     public void test4() {
         String asset = "BTC,ETH,";
@@ -69,4 +79,27 @@ public class StringTest {
         System.out.println(assetList);
 
     }
+
+    //字符串拼接
+    @Test
+    public void test5() {
+        String a = "aa";
+        String b = "bb";
+        String c = "cc";
+        String d = "dd";
+        String e = "ee";
+
+
+        String s = a.join(",", a, b, c, d, e);
+        System.out.println("s = " + s);
+
+
+        System.out.println("-----------------");
+
+        List<String> list = Arrays.asList(a, b, c, d, e);
+        String s1 = list.stream().collect(Collectors.joining(","));
+        System.out.println("s1 = " + s1);
+
+    }
+
 }
