@@ -80,7 +80,7 @@ public class StringTest {
 
     }
 
-    //字符串拼接
+    //字符串拼接(集合转字符串)
     @Test
     public void test5() {
         String a = "aa";
@@ -89,17 +89,26 @@ public class StringTest {
         String d = "dd";
         String e = "ee";
 
-
-        String s = a.join(",", a, b, c, d, e);
+        List<String> list = Arrays.asList(a, b, c, d, e);
+        String s = String.join(",", a, b, c, d, e);
         System.out.println("s = " + s);
 
 
         System.out.println("-----------------");
 
-        List<String> list = Arrays.asList(a, b, c, d, e);
-        String s1 = list.stream().collect(Collectors.joining(","));
+        String join = String.join(",", list);
+        System.out.println(join);
+
+        System.out.println("-----------------");
+
+
+        String s1 = list.stream()
+                .collect(Collectors.joining(","));
         System.out.println("s1 = " + s1);
 
     }
+
+
+
 
 }

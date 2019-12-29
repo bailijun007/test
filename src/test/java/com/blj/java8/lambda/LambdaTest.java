@@ -1,4 +1,4 @@
-package com.blj.lambda;
+package com.blj.java8.lambda;
 
 import com.blj.function.MyFunction;
 import com.blj.pojo.User;

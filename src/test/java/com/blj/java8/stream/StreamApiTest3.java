@@ -1,4 +1,4 @@
-package com.blj.stream;
+package com.blj.java8.stream;
 
 import com.blj.pojo.User;
 import org.junit.Test;
@@ -215,7 +215,8 @@ public class StreamApiTest3 {
 
 
         //再把字符串转成集合
-
+        List<String> list = Arrays.asList(s.split(",")).stream().map(u -> u.trim()).collect(Collectors.toList());
+        System.out.println("list = " + list);
 
     }
 

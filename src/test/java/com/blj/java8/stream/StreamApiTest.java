@@ -1,4 +1,4 @@
-package com.blj.stream;
+package com.blj.java8.stream;
 
 import com.blj.pojo.User;
 import org.hibernate.validator.constraints.EAN;

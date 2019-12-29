@@ -1,4 +1,4 @@
-package com.blj.lambda;
+package com.blj.java8.lambda;
 
 import com.blj.pojo.User;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
