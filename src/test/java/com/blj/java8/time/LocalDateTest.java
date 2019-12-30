@@ -71,6 +71,7 @@ public class LocalDateTest {
         LocalDate updateDay = date.withDayOfMonth(10);
         System.out.println("updateDay = " + updateDay);
 
+        //下个月的第一天是几号
         LocalDate nextDayOfMonth = date.with(TemporalAdjusters.firstDayOfNextMonth());
         System.out.println("nextDayOfMonth = " + nextDayOfMonth);
 
