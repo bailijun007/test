@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -108,7 +109,24 @@ public class StringTest {
 
     }
 
+    @Test
+    public void test6() throws UnsupportedEncodingException {
+        String  str ="aaaa中文的";
+        byte[] gbkbt = str.getBytes("GB2312");
+        byte[] utfbt = str.getBytes("utf-8");
+        byte[] bt = str.getBytes();
 
+        String  gbkstr= new String(gbkbt, "GB2312");  //string 与byte[] 转换时字符集要保持一致
+        String  utfstr= new String(utfbt, "utf-8");
+        str= new String(bt);
+
+        System.out.println("gbkstr>>>>"+gbkstr);
+        System.out.println("utfstr>>>>"+utfstr);
+        System.out.println("str>>>>"+str);
+
+
+
+    }
 
 
 }
