@@ -129,4 +129,11 @@ public class StringTest {
     }
 
 
+    @Test
+    public void test7(){
+        String str="张三";
+        System.out.println(str.length());
+
+    }
+
 }
