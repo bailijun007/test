@@ -13,15 +13,13 @@
 
     </resultMap>
 
-   <select id="queryList" resultMap="User">
+    <select id="queryList" resultMap="User">
        select * from  t_user limit 0,10
    </select>
 
-
-
-
-
-
+    <select id="queryById" resultMap="User">
+    select * from  t_user where id=#{id}
+    </select>
 
 
 </mapper>

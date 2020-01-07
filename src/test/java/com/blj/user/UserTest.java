@@ -42,8 +42,6 @@ public class UserTest {
         for (User user : list) {
             System.out.println("user = " + user);
         }
-
-
     }
 
 
