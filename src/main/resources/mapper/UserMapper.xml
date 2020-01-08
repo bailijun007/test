@@ -41,9 +41,7 @@
         <if test="limit!=null">
             limit 0,${limit}
         </if>
-        <if test="limit!=null">
-            limit 0,${limit}
-        </if>
+
     </select>
 
     <select id="queryById" resultMap="User">
