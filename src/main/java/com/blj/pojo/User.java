@@ -1,6 +1,8 @@
 package com.blj.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,11 +15,16 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
+ * User类的id字段会被@JsonIgnoreProperties注解忽略。
+ * password字段会被@JsonIgnore注解忽略。
+ * createDate会按照 @JsonFormat(pattern = "yyyy-MM-dd")进行格式转。
+ *
  * @author BaiLiJun  on 2019/12/20
  */
 @Data
 @AllArgsConstructor
 @Accessors(chain = true)
+@JsonIgnoreProperties(value = {"id"})
 @Table(name = "t_user")
 public class User implements Serializable {
     private  Long id;
@@ -26,6 +33,7 @@ public class User implements Serializable {
 
     private  Integer age;
 
+    @JsonIgnore
     private String password;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
