@@ -2,8 +2,9 @@ CREATE TABLE `t_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_name` varchar(255) DEFAULT NULL COMMENT '商品名称',
   `order_user` varchar(255) DEFAULT NULL COMMENT '订单用户信息',
+  `created` bigint(20) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=267 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8;
 
 
 -- ---------------------------

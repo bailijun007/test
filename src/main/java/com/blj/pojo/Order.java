@@ -22,5 +22,9 @@ public class Order implements Serializable {
 
     @Column(name = "order_user")
     private String orderUser;
+
+    @Column(name = "created")
+    private Long created;
+
 }
 

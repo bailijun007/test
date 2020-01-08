@@ -7,6 +7,7 @@
         <result column="id" property="id"/>
         <result column="order_name" property="orderName"/>
         <result column="order_user" property="orderUser"/>
+        <result column="created" property="created"/>
     </resultMap>
 
     <sql id="simple_where">
@@ -14,11 +15,14 @@
             <if test="id!=null">and id =#{id}</if>
             <if test="orderName!=null and orderName!=''">and order_name=#{orderName}</if>
             <if test="orderUser!=null and orderUser!=''">and order_user=#{orderUser}</if>
+            <if test="createdBegin!=null"> and created &gt;= #{createdBegin}</if>
+            <if test="createdEnd!=null"> and created &lt;= #{createdEnd}</if>
+
         </where>
     </sql>
 
     <sql id="Base_Column_List">
-		id,order_name,order_user
+		id,order_name,order_user,created
 	</sql>
 
 
