@@ -2,9 +2,12 @@ package com.blj.service.impl;
 
 import com.blj.common.exception.ExceptionEnums;
 import com.blj.common.exception.TtException;
+import com.blj.common.util.PageResult;
 import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
 import com.blj.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getList() {
         Map<String, Object> map = new HashMap<>();
+        map.put("limit",10);
         List<User> list = userMapper.queryList(map);
         return list;
     }
@@ -37,5 +41,21 @@ public class UserServiceImpl implements UserService {
             throw new TtException(ExceptionEnums.USER_NOT_BE_FIND);
         }
         return user;
+    }
+
+    @Override
+    public PageResult<User> pageList(Integer pageNo, Integer pageSize, Integer age) {
+        PageResult<User> pageResult = new PageResult<>();
+        PageHelper.startPage(pageNo, pageSize);
+
+        Map<String, Object> map=new HashMap<>();
+        map.put("age",age);
+        List<User> users = userMapper.queryList(map);
+        PageInfo<User> info = new PageInfo<>(users);
+        pageResult.setList(users)
+                .setPageNo(info.getPageNum())
+                .setPageCount(info.getPages())
+                .setRowTotal(info.getTotal());
+        return pageResult;
     }
 }

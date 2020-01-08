@@ -13,9 +13,38 @@
 
     </resultMap>
 
+    <sql id="Base_Column_List">
+  id, name,age,password,create_date,create_time
+</sql>
+
+    <sql id="simple_where">
+        <where>
+            <if test="id!=null">and id=#{id}</if>
+            <if test="name!=null and name!=''">and name=#{name}</if>
+            <if test="age!=null">and age=#{age}</if>
+            <if test="password!=null and password!=''">and password=#{password}</if>
+            <if test="createDate!=null">and create_date=#{createDate}</if>
+            <if test="createTime!=null">and create_time=#{createTime}</if>
+
+        </where>
+
+    </sql>
+
     <select id="queryList" resultMap="User">
-       select * from  t_user limit 0,10
-   </select>
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        <include refid="simple_where"/>
+        <if test="orderBy!=null and orderBy!=''">
+            order by ${orderBy} desc
+        </if>
+        <if test="limit!=null">
+            limit 0,${limit}
+        </if>
+        <if test="limit!=null">
+            limit 0,${limit}
+        </if>
+    </select>
 
     <select id="queryById" resultMap="User">
     select * from  t_user where id=#{id}
