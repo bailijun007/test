@@ -24,8 +24,8 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor
 @Accessors(chain = true)
-@JsonIgnoreProperties(value = {"id"})
 @Table(name = "t_user")
+//@JsonIgnoreProperties(value = {"id"})
 public class User implements Serializable {
     private  Long id;
 
@@ -33,7 +33,7 @@ public class User implements Serializable {
 
     private  Integer age;
 
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

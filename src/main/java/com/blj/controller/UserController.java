@@ -1,5 +1,6 @@
 package com.blj.controller;
 
+import com.blj.common.util.PageResult;
 import com.blj.common.util.ResponseResult;
 import com.blj.pojo.User;
 import com.blj.service.UserService;
@@ -54,6 +55,15 @@ public class UserController {
         return new ResponseResult(list);
     }
 
+
+    @GetMapping(value = "/pageList")
+    public ResponseResult<PageResult<User>> pageList(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize,@RequestParam(value = "age",required = false) Integer age) {
+
+        PageResult<User> pageResult = userService.pageList(pageNo,pageSize,age);
+
+        ResponseResult result = new ResponseResult(pageResult);
+        return result;
+    }
 
 
 }

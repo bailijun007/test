@@ -40,7 +40,7 @@ public class UserTest {
     }
 
     @Test
-    public void query() {
+    public void queryAll() {
         List<User> list = userMapper.selectAll();
         for (User user : list) {
             System.out.println("user = " + user);
