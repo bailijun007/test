@@ -48,5 +48,11 @@
     select * from  t_user where id=#{id}
     </select>
 
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(1)
+        from pc_liq_record
+        <include refid="simple_where" />
+    </select>
+
 
 </mapper>

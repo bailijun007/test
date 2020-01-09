@@ -21,6 +21,16 @@ public class MathTest {
         System.out.println("random = " + random);
     }
 
+    //从数组中随机取出一个数
+    @Test
+    public void test2() {
+        Long[] arr = {1234567L, 1111111L, 2222222L};
+        int index = (int) (Math.random() * arr.length);
+        Long aLong = arr[index];
+        System.out.println(aLong);
+    }
+
+
     //生成并返回订单编号
     @Test
     public void getOrderNo() {

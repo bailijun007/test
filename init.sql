@@ -61,7 +61,7 @@ end //
 
 -- 创建存储过程
 --
--- 创建往emp表中插入数据的存储过
+-- 创建往user表中插入数据的存储过
 delimiter //
 create procedure insert_user(in max_num int(10))
 begin

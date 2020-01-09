@@ -52,4 +52,19 @@ public class LocalDateTimeTest {
         System.out.println("localDateTime = " + localDateTime);
     }
 
+
+    //LocalDateTime加减时间
+    @Test
+    public void test5() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDateTime plusDays = localDateTime.plusDays(1L);
+        System.out.println("加一天后的时间为： " + plusDays);
+
+        LocalDateTime minusDays = localDateTime.minusDays(1L);
+        System.out.println("减一天时间 " + minusDays);
+        long l = minusDays.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        System.out.println("减一天时间的时间戳为："+l);
+
+    }
+
 }

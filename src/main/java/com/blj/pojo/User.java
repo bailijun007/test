@@ -21,11 +21,12 @@ import java.util.Objects;
  *
  * @author BaiLiJun  on 2019/12/20
  */
+
+//@JsonIgnoreProperties(value = {"id"})
 @Data
 @AllArgsConstructor
 @Accessors(chain = true)
 @Table(name = "t_user")
-//@JsonIgnoreProperties(value = {"id"})
 public class User implements Serializable {
     private  Long id;
 
