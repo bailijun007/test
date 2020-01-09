@@ -16,4 +16,6 @@ public interface UserMapper extends Mapper<User> {
     List<User> queryList(Map<String,Object> map);
 
     User queryById(@Param("id") Long id);
+
+    Integer queryCount(Map<String, Object> map);
 }

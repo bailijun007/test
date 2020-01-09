@@ -35,7 +35,7 @@ public class HttpTest2 {
     @Test
     public void getNotify() {
         String sign = "MD5"
-                + "c2c15783945424438945-1007"
+                + "c2c15783944468870203-0"
                 + "1000"
                 + "INR"
                 + "tra15783107712093153123"
@@ -52,7 +52,7 @@ public class HttpTest2 {
     public void getSign() {
         String sign = "https://ex-fund.icocrop.io/api/callback/c2c/deposit/tradeSuccessSkip" +
                 "https://ex-fund.icocrop.io/api/callback/c2c/deposit/notify" + "MD5"
-                + "c2c15783945424438945-1007" + "1000" + "INR" + "lsb19841626045" + "pkriDZoEwB";
+                + "c2c15784679970202637-1003" + "1000" + "INR" + "lsb19841626045" + "pkriDZoEwB";
         String md5 = DigestUtils.md5DigestAsHex(sign.getBytes());
 
         System.out.println("获取到加密后的签名 = " + md5);

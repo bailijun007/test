@@ -47,7 +47,13 @@ public class UserTest {
         }
     }
 
-
+    @Test
+    public void testCount() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("age", "20");
+        Integer count = userMapper.queryCount(map);
+        System.out.println("count = " + count);
+    }
 
 
 }
