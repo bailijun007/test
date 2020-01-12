@@ -42,4 +42,21 @@ public class BigDecimalTest {
 
     }
 
+    @Test
+    public void test4(){
+        BigDecimal decimal = new BigDecimal("0.000000000000000");
+//        if(decimal.equals(BigDecimal.ZERO)){
+//            System.out.println("true");
+//        }else {
+//            System.out.println("false");
+//        }
+
+        if(decimal.compareTo(BigDecimal.ZERO)==0){
+            System.out.println("true");
+        }else {
+            System.out.println("false");
+        }
+
+    }
+
 }

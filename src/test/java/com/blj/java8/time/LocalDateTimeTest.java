@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * LocalDateTime与timestamp、Date的转换
@@ -47,7 +48,7 @@ public class LocalDateTimeTest {
     //时间戳转LocalDateTime
     @Test
     public void test4() {
-        long timestamp = 1578457517157L;
+        long timestamp = 1578475838938L;
         LocalDateTime localDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.ofHours(8)).toLocalDateTime();
         System.out.println("localDateTime = " + localDateTime);
     }
@@ -64,6 +65,27 @@ public class LocalDateTimeTest {
         System.out.println("减一天时间 " + minusDays);
         long l = minusDays.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
         System.out.println("减一天时间的时间戳为："+l);
+
+    }
+
+
+    @Test
+    public void test6() {
+       LocalDate localDate=LocalDate.now();
+
+        long timestamp = localDate.atStartOfDay(ZoneOffset.ofHours(8)).toInstant().toEpochMilli();
+        System.out.println("timestamp = " + timestamp);
+
+        LocalDate nowDate = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.ofHours(8)).toLocalDate();
+        System.out.println("nowDate = " + nowDate);
+
+
+        long l = System.currentTimeMillis();
+        System.out.println("l = " + l);
+
+        long nowTime =System.currentTimeMillis();
+        long todayStartTime =nowTime - ((nowTime + TimeZone.getDefault().getRawOffset()) % (24 * 60 * 60 * 1000L));
+        System.out.println("todayStartTime = " + todayStartTime);
 
     }
 
