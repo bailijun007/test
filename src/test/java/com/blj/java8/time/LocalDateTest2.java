@@ -50,4 +50,19 @@ public class LocalDateTest2 {
         System.out.println("localDate = " + localDate);
     }
 
+
+    @Test
+    public void testLocalDate5() {
+        long timestamp = System.currentTimeMillis();
+         LocalDateTime localDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.ofHours(8)).toLocalDateTime();
+        LocalDateTime oldTime=LocalDateTime.of(2020,1,10,23,23,12,12);
+        System.out.println("20分钟后时间为"+oldTime.plusMinutes(20));
+        if (oldTime.plusMinutes(20).isBefore(localDateTime)) {
+            //更新：待支付为超时已取消
+            System.out.println("更新：待支付为超时已取消");
+        }else {
+            System.out.println("---------");
+        }
+    }
+
 }

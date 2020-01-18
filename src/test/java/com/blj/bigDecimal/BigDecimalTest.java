@@ -37,7 +37,7 @@ public class BigDecimalTest {
         BigDecimal orderAmount =new BigDecimal("700");
         BigDecimal volume =new BigDecimal("97.5");
 
-        BigDecimal price = orderAmount.divide(volume,10, RoundingMode.HALF_DOWN);
+        BigDecimal price = orderAmount.divide(volume,10, RoundingMode.DOWN);
         System.out.println("price = " + price);
 
     }
@@ -57,6 +57,14 @@ public class BigDecimalTest {
             System.out.println("false");
         }
 
+    }
+
+
+    @Test
+    public void test5(){
+        BigDecimal c2cLockedVolume =BigDecimal.ZERO;
+        c2cLockedVolume =new BigDecimal("12");
+        System.out.println("c2cLockedVolume = " + c2cLockedVolume);
     }
 
 }
