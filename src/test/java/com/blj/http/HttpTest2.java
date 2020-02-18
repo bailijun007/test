@@ -1,5 +1,6 @@
 package com.blj.http;
 
+import com.alibaba.druid.sql.visitor.SQLASTOutputVisitor;
 import com.blj.util.HttpClientUtil;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.UUID;
 
 /**
  * @author BaiLiJun  on 2020/1/2
@@ -35,12 +37,12 @@ public class HttpTest2 {
     @Test
     public void getNotify() {
         String sign = "MD5"
-                + "c2c15783944468870203-0"
-                + "1000"
-                + "INR"
+                + "c5133133808-135762957131874304"
+                + "7000"
+                + "CNY"
                 + "tra15783107712093153123"
                 +"success"
-                + "pkriDZoEwB";
+                + "HIETqcV152";
         String md5 = DigestUtils.md5DigestAsHex(sign.getBytes());
 
         logger.info("回调通知的md5:{}", md5);
@@ -77,5 +79,11 @@ public class HttpTest2 {
 
     }
 
+
+    @Test
+    public void test2(){
+         UUID uuid = UUID.randomUUID();
+        System.out.println("uuid.toString() = " + uuid.toString());
+    }
 
 }

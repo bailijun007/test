@@ -37,9 +37,34 @@ public class BigDecimalTest {
         BigDecimal orderAmount =new BigDecimal("700");
         BigDecimal volume =new BigDecimal("97.5");
 
-        BigDecimal price = orderAmount.divide(volume,10, RoundingMode.HALF_DOWN);
+        BigDecimal price = orderAmount.divide(volume,10, RoundingMode.DOWN);
         System.out.println("price = " + price);
 
+    }
+
+    @Test
+    public void test4(){
+        BigDecimal decimal = new BigDecimal("0.000000000000000");
+//        if(decimal.equals(BigDecimal.ZERO)){
+//            System.out.println("true");
+//        }else {
+//            System.out.println("false");
+//        }
+
+        if(decimal.compareTo(BigDecimal.ZERO)==0){
+            System.out.println("true");
+        }else {
+            System.out.println("false");
+        }
+
+    }
+
+
+    @Test
+    public void test5(){
+        BigDecimal c2cLockedVolume =BigDecimal.ZERO;
+        c2cLockedVolume =new BigDecimal("12");
+        System.out.println("c2cLockedVolume = " + c2cLockedVolume);
     }
 
 }

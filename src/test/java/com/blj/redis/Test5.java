@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -46,13 +47,46 @@ public class Test5 {
         Object s = hashOperations.get(key, hashKey);
         if (null != s) {
             Map mapType = JSON.parseObject(s.toString(), Map.class);
-            for (Object obj : mapType.keySet()){
+            for (Object obj : mapType.keySet()) {
 //                System.out.println("key为："+obj+"值为："+mapType.get(obj));
-                if(obj.toString().equals("chainSymbolId")){
-                    System.out.println("chainSymbolId值为:"+mapType.get(obj));
+                if (obj.toString().equals("chainSymbolId")) {
+                    System.out.println("chainSymbolId值为:" + mapType.get(obj));
                 }
             }
         }
+    }
+
+    @Test
+    public void test3() {
+        HashOperations hashOperations = templateDB0.opsForHash();
+        String asset = "ETH";
+        String hashKey = asset + "__" + asset + "_USD";
+        Object s = hashOperations.get("pc_pos_level", hashKey);
+        if (null != s) {
+//            List<PosLevelVo> voList = JSON.parseArray(s.toString(), PosLevelVo.class);
+//            Optional<BigDecimal> first = voList.stream().filter(vo -> vo.getMinAmt().compareTo(BigDecimal.ZERO) <= 0 && vo.getMaxAmt().compareTo(BigDecimal.ZERO) >= 0)
+//                    .map(PosLevelVo::getMinHoldMarginRatio).findFirst();
+//            System.out.println(first.orElse(BigDecimal.ZERO));
+
+
+            List<PosLevelVo> voList = JSON.parseArray(s.toString(), PosLevelVo.class);
+            Optional<BigDecimal> first = voList.stream().filter(vo -> {
+                BigDecimal val = new BigDecimal(9999999);
+                return vo.getMinAmt().compareTo(val) <= 0 && vo.getMaxAmt().compareTo(val) >= 0;
+            }).peek(o -> {
+                System.out.println(o);
+            })
+                    .map(PosLevelVo::getMinHoldMarginRatio).findFirst();
+            System.out.println(first.orElse(BigDecimal.ZERO));
+
+//            List<BigDecimal> list = voList.stream().filter(vo -> vo.getMinAmt().compareTo(new BigDecimal(0.00)) <= 0 && vo.getMaxAmt().compareTo(new BigDecimal(0.02)) >= 0)
+//                    .map(PosLevelVo::getMinHoldMarginRatio).collect(Collectors.toList());
+//
+//            System.out.println(list.get(0));
+
+        }
+
+//        System.out.println("默认值 0" );
     }
 
 }
