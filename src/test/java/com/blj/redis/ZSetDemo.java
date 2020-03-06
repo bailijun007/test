@@ -199,7 +199,7 @@ public class ZSetDemo {
         BBKLine bbkLine = new BBKLine();
         bbkLine.setAsset("BTC");
         bbkLine.setSymbol("BTC_USDT");
-        bbkLine.setSequence(1);
+        bbkLine.setFrequence(1);
         bbkLine.setMinute(minute);
         bbkLine.setHigh(new BigDecimal(8727.580000000000000000000000000000 + ""));
         bbkLine.setLow(new BigDecimal(8727.580000000000000000000000000000 + ""));

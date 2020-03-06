@@ -45,7 +45,7 @@ public class Test {
         BBKLine bbkLine = new BBKLine();
         bbkLine.setAsset("BTC");
         bbkLine.setSymbol("BTC_USDT");
-        bbkLine.setSequence(1);
+        bbkLine.setFrequence(1);
         bbkLine.setMinute(26388150L);
         bbkLine.setHigh(new BigDecimal(8727.580000000000000000000000000000 + ""));
         bbkLine.setLow(new BigDecimal(8727.580000000000000000000000000000 + ""));
@@ -85,4 +85,21 @@ BBKlineBuild bbKlineBuild;
         }
     }
 
+    @org.junit.Test
+    public void test4(){
+        BigDecimal newkLine=new BigDecimal("8450.22");
+        BigDecimal oldLine=new BigDecimal("8410.22");
+
+        System.out.println(newkLine.min(oldLine));
+    }
+    @org.junit.Test
+    public void test5(){
+        BigDecimal newkLine=BigDecimal.ZERO;
+        BigDecimal oldLine=new BigDecimal("8410.22");
+        newkLine=oldLine;
+
+
+
+        System.out.println(newkLine);
+    }
 }
