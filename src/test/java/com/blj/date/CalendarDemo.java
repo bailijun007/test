@@ -15,9 +15,26 @@ import java.util.concurrent.TimeUnit;
 @RunWith(SpringRunner.class)
 public class CalendarDemo {
 
+    /**
+     * 毫秒时间戳转成分钟时间戳
+     */
     @Test
-    public void test1(){
+    public void toMinute(){
         long currentMinute = TimeUnit.MILLISECONDS.toMinutes(Calendar.getInstance().getTimeInMillis());
-        System.out.println("currentMinute = " + currentMinute);
+        System.out.println("currentMinute = " + currentMinute); //currentMinute = 26395439
     }
+
+    /**
+     * 分钟时间戳转成毫秒时间戳
+     */
+    @Test
+    public void test2(){
+      Long minute=  26395388L;
+        final long l = TimeUnit.MINUTES.toMillis(minute);
+        System.out.println("l = " + l);//l = 1583723280000  =>2020/3/9 11:8:0
+
+        final long l2 = TimeUnit.MINUTES.toMillis(minute+5);
+        System.out.println("l2 = " + l2);//l2 = 1583723580000  => 2020/3/9 11:13:0
+    }
+
 }

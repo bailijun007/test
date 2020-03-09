@@ -1,9 +1,12 @@
 package com.blj.redis.pubsub.test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.blj.redis.pubsub.vo.BBKLine;
 import com.blj.redis.pubsub.constant.BbKLineKey;
 import com.blj.redis.pubsub.kline.BBKlineBuild;
+import lombok.val;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +17,9 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -102,4 +108,18 @@ BBKlineBuild bbKlineBuild;
 
         System.out.println(newkLine);
     }
+
+    @org.junit.Test
+    public void test6(){
+         Long min = 26395388L;
+        Set<String> range = klineTemplateDB2.opsForZSet().rangeByScore("kline:BB:USDT:BTC_USDT:1", min, min+5);
+        if (!range.isEmpty()) {
+             ArrayList<String> list = new ArrayList<>(range);
+            for (String s : list) {
+                BBKLine bbkLine = JSON.parseObject(s,BBKLine.class);
+                System.out.println("bbkLine = " + bbkLine);
+            }
+        }
+    }
+
 }

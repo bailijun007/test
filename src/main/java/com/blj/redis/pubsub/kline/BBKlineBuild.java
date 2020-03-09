@@ -88,7 +88,7 @@ public class BBKlineBuild {
 
     }
 
-    private BBKLine merge(BBKLine newkLine, BBKLine oldkLine) {
+    private BBKLine merge(BBKLine oldkLine, BBKLine newkLine) {
         // oldKline 有可能是空，直接返回newKline
         if (null == oldkLine) {
         } else {
