@@ -1,6 +1,6 @@
 package com.blj.controller;
 
-import com.blj.config.RabbitMQConfig;
+import com.blj.config.mq.RabbitMQConfig;
 import com.blj.pojo.Order;
 import com.blj.service.OrderService;
 import com.blj.service.RedisService;

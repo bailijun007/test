@@ -1,6 +1,6 @@
 package com.blj.service;
 
-import com.blj.config.RabbitMQConfig;
+import com.blj.config.mq.RabbitMQConfig;
 import com.blj.pojo.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

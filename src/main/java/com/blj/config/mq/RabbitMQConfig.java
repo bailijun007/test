@@ -1,4 +1,4 @@
-package com.blj.config;
+package com.blj.config.mq;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
