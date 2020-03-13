@@ -15,11 +15,62 @@ import java.math.RoundingMode;
 @RunWith(SpringRunner.class)
 public class BigDecimalTest2 {
 
+    /**
+     * 最小值
+     */
     @Test
     public void test1() {
-        String s = "1583897760000,7921.41,7921.41,7921.41,7921.41,0.007";
-        final String[] split = s.split(",");
-
+        BigDecimal bigDecimal = new BigDecimal("456.15");
+        BigDecimal bigDecima2 = new BigDecimal("4215.15");
+        final BigDecimal min = bigDecimal.min(bigDecima2);
+        System.out.println("min = " + min);
 
     }
+
+    /**
+     * 最大值
+     */
+    @Test
+    public void test2() {
+        BigDecimal bigDecimal = new BigDecimal("456.15");
+        BigDecimal bigDecima2 = new BigDecimal("4215.15");
+        final BigDecimal max = bigDecimal.max(bigDecima2);
+        System.out.println("max = " + max);
+
+    }
+
+    @Test
+    public void test3() {
+        BigDecimal bigDecimal = new BigDecimal("10.00");
+        BigDecimal bigDecima2 = new BigDecimal("3.00");
+
+        BigDecimal[] decimals = bigDecimal.divideAndRemainder(bigDecima2);
+        System.out.println(decimals[0]);
+        System.out.println(decimals[1]);
+    }
+
+    /**
+     * BigDecimal 转成double
+     */
+    @Test
+    public void test4() {
+        BigDecimal bigDecimal = new BigDecimal("148651534.15645");
+        final double v = bigDecimal.doubleValue();
+        System.out.println("v = " + v);
+    }
+
+
+    /**
+     * BigDecimal 去掉末尾多余的0
+     */
+    @Test
+    public void test5() {
+        BigDecimal bigDecimal = new BigDecimal("148651534.156450000");
+        System.out.println("bigDecimal = " + bigDecimal);
+
+        System.out.println("去掉末尾的0，bigDecimal ="+bigDecimal.stripTrailingZeros());
+
+    }
+
+
 }
