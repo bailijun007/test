@@ -3,7 +3,6 @@ package com.blj.redis;
 import com.alibaba.fastjson.JSON;
 import com.blj.redis.pubsub.vo.BBKLine;
 import com.blj.redis.pubsub.vo.ExBbKlineVo;
-import com.hupa.exp.common.tool.format.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,11 +37,11 @@ public class ZSetDemo2 {
         bbkLine.setVolume(new BigDecimal(0.019791000000000000000000000000 + ""));
         BigDecimal[] bigDecimals = new BigDecimal[6];
         bigDecimals[0] = new BigDecimal(minute);
-        bigDecimals[1] = bbkLine.getHigh() == null ? BigDecimal.ZERO : bbkLine.getHigh();
-        bigDecimals[2] = bbkLine.getLow() == null ? BigDecimal.ZERO : bbkLine.getLow();
-        bigDecimals[3] = bbkLine.getOpen() == null ? BigDecimal.ZERO : bbkLine.getOpen();
-        bigDecimals[4] = bbkLine.getClose() == null ? BigDecimal.ZERO : bbkLine.getClose();
-        bigDecimals[5] = bbkLine.getVolume() == null ? BigDecimal.ZERO : bbkLine.getVolume();
+        bigDecimals[1] = bbkLine.getHigh() == null ? BigDecimal.ZERO : bbkLine.getHigh().stripTrailingZeros();
+        bigDecimals[2] = bbkLine.getLow() == null ? BigDecimal.ZERO : bbkLine.getLow().stripTrailingZeros();
+        bigDecimals[3] = bbkLine.getOpen() == null ? BigDecimal.ZERO : bbkLine.getOpen().stripTrailingZeros();
+        bigDecimals[4] = bbkLine.getClose() == null ? BigDecimal.ZERO : bbkLine.getClose().stripTrailingZeros();
+        bigDecimals[5] = bbkLine.getVolume() == null ? BigDecimal.ZERO : bbkLine.getVolume().stripTrailingZeros();
 
         final Set<ZSetOperations.TypedTuple<String>> typedTuples = new HashSet<>();
         final double score = minute.doubleValue();
