@@ -18,4 +18,11 @@ public interface UserMapper extends Mapper<User> {
     User queryById(@Param("id") Long id);
 
     Integer queryCount(Map<String, Object> map);
+
+    void batchSave(@Param("userList") List<User> userList);
+
+    void batchUpdate(@Param("userList") List<User> userList);
+
+
+    void batchUpdateWithTwoParam(@Param("userList") List<User> userList, @Param("id") long id);
 }
