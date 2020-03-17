@@ -75,7 +75,7 @@
         </foreach>
     </update>
 
-    <update id="batchUpdateWithTwoParam" parameterType="java.util.List">
+    <update id="batchUpdateWithTwoParam">
         <foreach collection="userList" item="item" index="index" open="" close="" separator=";">
             UPDATE t_user
             <set>

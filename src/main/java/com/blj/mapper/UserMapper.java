@@ -24,5 +24,5 @@ public interface UserMapper extends Mapper<User> {
     void batchUpdate(@Param("userList") List<User> userList);
 
 
-    void batchUpdateWithTwoParam(@Param("userList") List<User> userList, @Param("id") long id);
+    int batchUpdateWithTwoParam(@Param("userList") List<User> userList, @Param("id") long id);
 }

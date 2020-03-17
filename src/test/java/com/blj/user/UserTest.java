@@ -71,14 +71,15 @@ public class UserTest {
     @Test
     public void batchUpdateWithTwoParam(){
         List<User> userList=new ArrayList<>();
-       long id=1L;
+       long id=1000L;
         for (int i = 1; i <=7; i++) {
             User user = new User();
             user.setAge(60+i);
             userList.add(user);
         }
 
-        userMapper.batchUpdateWithTwoParam(userList,id);
+        final int i = userMapper.batchUpdateWithTwoParam(userList, id);
+        System.out.println("i = " + i);
     }
 
 
