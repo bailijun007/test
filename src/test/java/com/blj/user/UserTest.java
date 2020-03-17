@@ -3,6 +3,7 @@ package com.blj.user;
 import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,15 +48,15 @@ public class UserTest {
      * 批量保存
      */
     @Test
-    public void batchSave(){
-        List<User> userList=new ArrayList<>();
+    public void batchSave() {
+        List<User> userList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             User user = new User();
             user.setCreateDate(LocalDate.now())
                     .setCreateTime(LocalDateTime.now())
-                    .setName("李四"+i)
-                    .setAge(20+i)
-                    .setPassword("123456"+i);
+                    .setName("李四" + i)
+                    .setAge(20 + i)
+                    .setPassword("123456" + i);
             userList.add(user);
         }
         userMapper.batchSave(userList);
@@ -69,12 +70,12 @@ public class UserTest {
      * 表示允许批量操作，例 jdbc:mysql://localhost:3306/mysqlTest?characterEncoding=utf-8&allowMultiQueries=true
      */
     @Test
-    public void batchUpdateWithTwoParam(){
-        List<User> userList=new ArrayList<>();
-       long id=1000L;
-        for (int i = 1; i <=7; i++) {
+    public void batchUpdateWithTwoParam() {
+        List<User> userList = new ArrayList<>();
+        long id = 1000L;
+        for (int i = 1; i <= 7; i++) {
             User user = new User();
-            user.setAge(60+i);
+            user.setAge(60 + i);
             userList.add(user);
         }
 
@@ -84,12 +85,12 @@ public class UserTest {
 
 
     @Test
-    public void batchUpdate2(){
-        List<User> userList=new ArrayList<>();
-        for (int i = 1; i <=7; i++) {
+    public void batchUpdate2() {
+        List<User> userList = new ArrayList<>();
+        for (int i = 1; i <= 7; i++) {
             User user = new User();
-            user.setAge(30+i);
-            user.setId(Long.parseLong(i+""));
+            user.setAge(30 + i);
+            user.setId(Long.parseLong(i + ""));
 
             userList.add(user);
         }
@@ -113,5 +114,15 @@ public class UserTest {
         System.out.println("count = " + count);
     }
 
+    @Test
+    public void test4() {
+        final List<User> userList = userMapper.selectAll();
+        for (User user : userList) {
+            System.out.println("user = " + user);
+        }
+        final PageInfo<User> info = new PageInfo<>(userList);
+        System.out.println("总条数为："+info.getTotal());
+
+    }
 
 }

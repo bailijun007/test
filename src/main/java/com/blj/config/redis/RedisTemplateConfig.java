@@ -17,11 +17,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 public class RedisTemplateConfig {
 
     @Value("${kline.redis.host}")
-    private String localHostName;
+    private String klineRedisHostName;
     @Value("${kline.redis.port}")
-    private int localPort;
+    private int klineRedisPort;
     @Value("${kline.redis.password}")
-    private String localPassword;
+    private String klineRedisPassword;
 
     @Bean("klineCf2")
     public RedisConnectionFactory redisConnectionFactory0() {
@@ -33,9 +33,9 @@ public class RedisTemplateConfig {
 
     private RedisStandaloneConfiguration standaloneConfiguration(int dataBase) {
         RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
-        conf.setHostName(localHostName);
-        conf.setPort(localPort);
-        conf.setPassword(RedisPassword.of(localPassword));
+        conf.setHostName(klineRedisHostName);
+        conf.setPort(klineRedisPort);
+        conf.setPassword(RedisPassword.of(klineRedisPassword));
         conf.setDatabase(dataBase);
         return conf;
     }

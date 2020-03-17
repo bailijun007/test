@@ -9,6 +9,7 @@ import com.blj.redis.pubsub.vo.BbTradeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.core.Cursor;
@@ -24,8 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 /**
@@ -43,11 +43,31 @@ public class BBKlineBuild {
     @Resource(name = "klineTemplateDB2")
     private StringRedisTemplate klineTemplateDB2;
 
+    @Value("${bb.kline.ongoingCalc.enable}")
+    private int ongoingCalcEnable;
+
+    private static ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
+            2,
+            Runtime.getRuntime().availableProcessors() + 1,
+            2L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(10000000),
+            Executors.defaultThreadFactory(),
+            new ThreadPoolExecutor.DiscardOldestPolicy()
+    );
 
     @PostConstruct
+    public void bbKlineBuild() {
+        if (1 != ongoingCalcEnable) {
+            return;
+        }
+        threadPool.execute(() -> trigger());
+
+    }
+
+
+//    @PostConstruct
     public void trigger() {
         List<BBSymbol> bbSymbols = listSymbol();
-        List<BbTradeVo> list =new CopyOnWriteArrayList<>();
 
         for (BBSymbol bbSymbol : bbSymbols) {
             String asset = bbSymbol.getAsset();
@@ -59,13 +79,12 @@ public class BBKlineBuild {
                 public void onMessage(Message message, byte[] pattern) {
                     String msg = new String(message.getBody());
                     logger.info("收到k线推送消息:{}" + msg);
-                    List<BbTradeVo> bbTradeVos = listTrade(msg);
+                    List<BbTradeVo> list = listTrade(msg);
 
-                    list.addAll(bbTradeVos);
 
                     // 拆成不同的分钟
                     Map<Long, List<BbTradeVo>> minute2TradeList = list.stream()
-                            .collect(Collectors.groupingBy(klineTrade -> klineTrade.getTradeTime()));
+                            .collect(Collectors.groupingBy(klineTrade -> TimeUnit.MILLISECONDS.toMinutes(klineTrade.getTradeTime())));
 
                     for (Long ms : minute2TradeList.keySet()) {
                         long minute = TimeUnit.MILLISECONDS.toMinutes(ms);
@@ -79,7 +98,6 @@ public class BBKlineBuild {
 
                         notifyUpdate(asset, symbol, minute, 1);
                     }
-
                 }
             }, channel.getBytes());
 

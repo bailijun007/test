@@ -51,9 +51,6 @@ public class TestStreamTerminalOperation {
             System.out.println("存在60岁以上的用户 " );
             System.out.println("60岁以上的用户有："+userList.stream().map(User::getAge).filter(age -> age > 60).count()+"个");
         }
-
-
-
     }
 
 }
