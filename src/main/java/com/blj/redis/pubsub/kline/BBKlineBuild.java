@@ -55,7 +55,7 @@ public class BBKlineBuild {
             new ThreadPoolExecutor.DiscardOldestPolicy()
     );
 
-    @PostConstruct
+//    @PostConstruct
     public void bbKlineBuild() {
         if (1 != ongoingCalcEnable) {
             return;
