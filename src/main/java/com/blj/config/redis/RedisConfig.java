@@ -1,25 +1,15 @@
 package com.blj.config.redis;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-
-import java.util.List;
 
 /**
  * @author BaiLiJun  on 2019/12/20
@@ -28,19 +18,19 @@ import java.util.List;
 public class RedisConfig {
 
     @Value("${spring.redis.host}")
-    private String remoteHostName;
+    private String hostName;
     @Value("${spring.redis.port}")
-    private int remotePort;
+    private int port;
     @Value("${spring.redis.password}")
-    private String remotePassword;
+    private String password;
 
     @Primary
     @Bean("cf0")
     public RedisConnectionFactory redisConnectionFactory0() {
         RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
-        conf.setHostName(remoteHostName);
-        conf.setPort(remotePort);
-        RedisPassword password = RedisPassword.of(remotePassword);
+        conf.setHostName(hostName);
+        conf.setPort(port);
+        RedisPassword password = RedisPassword.of(this.password);
         conf.setPassword(password);
         LettuceConnectionFactory cf = new LettuceConnectionFactory(conf);
         cf.setDatabase(0);
@@ -50,10 +40,10 @@ public class RedisConfig {
     @Bean("cf5")
     public RedisConnectionFactory redisConnectionFactory5() {
         RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
-        conf.setHostName(remoteHostName);
-        RedisPassword password = RedisPassword.of(remotePassword);
+        conf.setHostName(hostName);
+        RedisPassword password = RedisPassword.of(this.password);
         conf.setPassword(password);
-        conf.setPort(remotePort);
+        conf.setPort(port);
 
         LettuceConnectionFactory cf = new LettuceConnectionFactory(conf);
         cf.setDatabase(5);
