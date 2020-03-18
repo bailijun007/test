@@ -10,7 +10,7 @@ public class Singleton2 {
     private static Singleton2 singleton = new Singleton2();
 
     private Singleton2() {
-
+        System.out.println("我是Singleton2的构造方法");
     }
 
     public  static Singleton2 getSingleton() {

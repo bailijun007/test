@@ -12,7 +12,7 @@ public class Singleton4 {
    }
 
    private Singleton4(){
-
+       System.out.println("我是Singleton4的构造方法");
    }
 
    public static final Singleton4 getInstance(){

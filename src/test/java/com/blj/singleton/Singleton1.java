@@ -10,10 +10,10 @@ public class Singleton1 {
     private static Singleton1 singleton = null;
 
     private Singleton1() {
-
+        System.out.println("我是Singleton1的构造方法");
     }
 
-    //懒汉式下需要加synchronized保证线程安全？
+    //懒汉式下需要加synchronized保证线程安全
     public synchronized static Singleton1 getSingleton() {
         if (singleton == null) {
             singleton = new Singleton1();
