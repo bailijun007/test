@@ -16,6 +16,7 @@ import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -55,7 +56,7 @@ public class BBKlineBuild {
             new ThreadPoolExecutor.DiscardOldestPolicy()
     );
 
-    @PostConstruct
+    @Scheduled(cron = "*/1 * * * * *")
     public void bbKlineBuild() {
         if (1 != ongoingCalcEnable) {
             return;
