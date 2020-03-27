@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class TestRestTemplate {
     @Test
     public void test1(){
-        String url ="http://115.144.238.29:90/client/tracnce?orderNo=c6390105662-0&customerId=gte666&orderCurrency=INR&orderAmount=7000&receiveUrl=https://ex-fund.icocrop.io/api/callback/c2c/deposit/notify&pickupUrl=https://ex-fund.icocrop.io/api/callback/c2c/deposit/tradeSuccessSkip&shopNo=334&signType=MD5&sign=4c0ea28f230eabc87c71c0e0551ee580";
+        String url ="http://115.144.238.29:90/client/tracnce?orderNo=c5880997143-135762957131874304&customerId=test1234&orderCurrency=CNY&orderAmount=121&receiveUrl=https://www.icocrop.io/v1/http/c2c/callback/money/in&pickupUrl=https://www.icocrop.io/v1/http/c2c/callback/web/pay&shopNo=356&signType=MD5&sign=sign=6dbfa98143c3edadd455b2308f2e9ef1";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

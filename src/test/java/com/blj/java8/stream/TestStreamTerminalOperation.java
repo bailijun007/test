@@ -53,4 +53,22 @@ public class TestStreamTerminalOperation {
         }
     }
 
+    @Test
+    public void test3(){
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        //如果过滤器的计算结果为true，则检索该元素，否则返回最后一个元素。
+        int value = list.stream().filter(x -> x == 2)
+                .findFirst()
+                .orElse(list.get(list.size() - 1));
+        System.out.println("value = " + value);
+
+        //列表为空，则可以返回默认值，例如-1。
+        List<Integer> list2 = new ArrayList<>();
+        int value2 = list2.stream().filter(x -> x == 6)
+                .findFirst()
+                .orElse(list2.isEmpty() ? -1 : list2.get(list2.size() - 1));
+        System.out.println("value2 = " + value2);
+
+    }
+
 }

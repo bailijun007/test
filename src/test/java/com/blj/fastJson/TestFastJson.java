@@ -26,4 +26,17 @@ public class TestFastJson {
         System.out.println("总数："+ja.getBigDecimal(5));
     }
 
+    @Test
+    public void test2(){
+        String s="[0,1483200240000,956.54,956.54,956.54,956.54,0.48375944]";
+        JSONArray ja = JSON.parseArray(s);
+        System.out.println("是否需要："+ja.getInteger(0));
+        System.out.println("分钟时间戳："+ja.getLong(1));
+        System.out.println("开盘价："+ja.getBigDecimal(2));
+        System.out.println("最高价："+ja.getBigDecimal(3));
+        System.out.println("最低价："+ja.getBigDecimal(4));
+        System.out.println("收盘价："+ja.getBigDecimal(5));
+        System.out.println("总数："+ja.getBigDecimal(6));
+    }
+
 }

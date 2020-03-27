@@ -40,4 +40,14 @@ public class ListTest {
         List<Object> list = Collections.emptyList();
         System.out.println("list = " + list);
     }
+
+    @Test
+    public void test3() {
+        List<Integer> list = Collections.emptyList();
+        System.out.println("list = " + list);
+        List<Integer> oneList = new ArrayList<>();
+        oneList.addAll(list);
+        System.out.println("oneList = " + oneList);
+    }
+
 }

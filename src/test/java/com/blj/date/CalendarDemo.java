@@ -16,11 +16,13 @@ import java.util.concurrent.TimeUnit;
 public class CalendarDemo {
 
     /**
+     *
      * 毫秒时间戳转成分钟时间戳
      */
     @Test
     public void toMinute(){
-        long currentMinute = TimeUnit.MILLISECONDS.toMinutes(Calendar.getInstance().getTimeInMillis());
+        long l=1584728760000L;
+        long currentMinute = TimeUnit.MILLISECONDS.toMinutes(l);
         System.out.println("currentMinute = " + currentMinute); //currentMinute = 26395439
     }
 
@@ -36,5 +38,17 @@ public class CalendarDemo {
         final long l2 = TimeUnit.MINUTES.toMillis(minute+5);
         System.out.println("l2 = " + l2);//l2 = 1583723580000  => 2020/3/9 11:13:0
     }
+
+
+
+
+    @Test
+    public void addMinute(){
+        long ms=1584728760000L;
+        long maxMs = TimeUnit.MINUTES.toMillis(TimeUnit.MILLISECONDS.toMinutes(ms) + 1) - 1;
+        System.out.println("maxMs = " + maxMs);
+    }
+
+
 
 }
