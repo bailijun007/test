@@ -3,6 +3,7 @@ package com.blj.redis.pubsub.test;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.blj.redis.pubsub.Pub;
 import com.blj.redis.pubsub.vo.BBKLine;
 import com.blj.redis.pubsub.constant.BbKLineKey;
 import com.blj.redis.pubsub.kline.BBKlineBuild;
@@ -35,7 +36,6 @@ public class Test {
 
     @Resource(name = "templateDB0")
     private StringRedisTemplate templateDB0;
-
 
 
     @org.junit.Test

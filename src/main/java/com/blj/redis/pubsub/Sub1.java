@@ -3,6 +3,7 @@ package com.blj.redis.pubsub;
 import com.alibaba.fastjson.JSONObject;
 import com.blj.pojo.User;
 import com.blj.redis.pubsub.constant.BbKLineKey;
+import com.blj.redis.pubsub.constant.PubSubRedisKey;
 import com.blj.redis.pubsub.kline.BBKlineBuild;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -29,14 +30,14 @@ public class Sub1 {
 
     @PostConstruct
     public void trigger(){
-        String channel = "test_pubsub";
+        String channel = PubSubRedisKey.TEST_PUBSUB;
 
         templateDB0.getConnectionFactory().getConnection().subscribe(new MessageListener() {
             @Override
             public void onMessage(Message message, byte[] pattern) {
                 String msg = new String(message.getBody());
                 log.info("收到推送消息:{}" , msg);
-                 User user = JSONObject.parseObject(msg, User.class);
+//                 User user = JSONObject.parseObject(msg, User.class);
 
             }
         },channel.getBytes());

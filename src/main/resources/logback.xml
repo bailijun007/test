@@ -163,7 +163,11 @@
 	        <!-- 控制台输出 -->
 	        <appender-ref ref="STDOUT"/>
 	        <!-- 文件输出 -->
-	        <appender-ref ref="ERROR"/>
+            <!-- 文件输出 -->
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="WARN"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="DEBUG"/>
         </root>
         
 		<logger name="com.blj" level="info"></logger>

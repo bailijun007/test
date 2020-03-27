@@ -78,7 +78,7 @@ public class BBKlineBuild {
                 @Override
                 public void onMessage(Message message, byte[] pattern) {
                     String msg = new String(message.getBody());
-                    logger.info("收到k线推送消息:{}" + msg);
+                    logger.info("收到k线推送消息:{}" , msg);
                     List<BbTradeVo> list = listTrade(msg);
 
 
@@ -94,9 +94,16 @@ public class BBKlineBuild {
                         BBKLine oldkLine = getOldKLine(asset, symbol, minute, 1);
 
                         BBKLine mergedKline = merge(oldkLine, newkLine);
+
+                        logger.info("合并k线数据为：[{}]" , mergedKline.toString());
+
                         saveKline(mergedKline, asset, symbol, minute, 1);
 
+                        logger.info("保存k线数据成功");
+
                         notifyUpdate(asset, symbol, minute, 1);
+
+                        logger.info("k线数据成功，发出通知！");
                     }
                 }
             }, channel.getBytes());
