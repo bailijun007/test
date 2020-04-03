@@ -32,7 +32,7 @@ public class SecController {
     private StockService stockService;
     /**
      * 使用redis+消息队列进行秒杀实现
-     *
+     *127.0.0.1:7890/sec
      * @param username
      * @param stockName
      * @return
