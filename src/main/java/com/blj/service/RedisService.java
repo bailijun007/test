@@ -22,10 +22,10 @@ public class RedisService {
      * 设置String键值对
      * @param key
      * @param value
-     * @param millis
+     * @param minutes
      */
-    public void put(String key, String value, long millis) {
-        templateDB0.opsForValue().set(key, value, millis, TimeUnit.MINUTES);
+    public void put(String key, String value, long minutes) {
+        templateDB0.opsForValue().set(key, value, minutes, TimeUnit.MINUTES);
     }
     public void putForHash(String objectKey, String hkey, String value) {
         templateDB0.opsForHash().put(objectKey, hkey, value);

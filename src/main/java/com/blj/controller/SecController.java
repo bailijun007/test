@@ -51,7 +51,7 @@ public class SecController {
              */
             log.info("用户：{}秒杀该商品：{}库存有余，可以进行下订单操作", username, stockName);
             //发消息给库存消息队列，将库存数据减一
-            rabbitTemplate.convertAndSend(RabbitMQConfig.STORY_EXCHANGE, RabbitMQConfig.STORY_ROUTING_KEY, stockName);
+            rabbitTemplate.convertAndSend(RabbitMQConfig.STOCK_EXCHANGE, RabbitMQConfig.STOCK_ROUTING_KEY, stockName);
 
             //发消息给订单消息队列，创建订单
             Order order = new Order();

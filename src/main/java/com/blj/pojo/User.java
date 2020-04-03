@@ -50,6 +50,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public User(String name, Integer age, String password) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+    }
+
     public User() {}
     public User(Long id) {
         this.id = id;
@@ -71,6 +77,18 @@ public class User implements Serializable {
                 Objects.equals(password, user.password) &&
                 Objects.equals(createDate, user.createDate) &&
                 Objects.equals(createTime, user.createTime);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                ", createDate=" + createDate +
+                ", createTime=" + createTime +
+                '}';
     }
 
     @Override

@@ -18,7 +18,7 @@ public class MQStockService {
      * 监听库存消息队列，并消费
      * @param stockName
      */
-    @RabbitListener(queues = RabbitMQConfig.STORY_QUEUE)
+    @RabbitListener(queues = RabbitMQConfig.STOCK_QUEUE)
     public void decrByStock(String stockName) {
         log.info("库存消息队列收到的消息商品信息是：{}", stockName);
         /**

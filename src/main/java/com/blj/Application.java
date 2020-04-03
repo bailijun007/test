@@ -1,5 +1,6 @@
 package com.blj;
 
+import com.blj.redis.pubsub.test.TestPubDemo;
 import com.blj.service.RedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,11 +10,16 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import javax.annotation.PostConstruct;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 主启动类
@@ -28,14 +34,27 @@ public class Application implements ApplicationRunner {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
 
+    private static ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
+            2,
+            Runtime.getRuntime().availableProcessors() + 1,
+            2L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(10000000),
+            Executors.defaultThreadFactory(),
+            new ThreadPoolExecutor.DiscardOldestPolicy()
+    );
+
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(Application.class, args);
+//        TestPubDemo bean = applicationContext.getBean(TestPubDemo.class);
+//        threadPool.execute(()->bean.testPub());
     }
 
     @Autowired
     private RedisService redisService;
+
     /**
      * redis初始化商品的库存量和信息
+     *
      * @param args
      * @throws Exception
      */
