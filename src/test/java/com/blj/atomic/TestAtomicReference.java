@@ -20,11 +20,13 @@ import java.util.concurrent.atomic.AtomicStampedReference;
  * @author BaiLiJun  on 2020/4/5
  */
 @Slf4j
-//@RunWith(SpringRunner.class)
-//@ActiveProfiles("local")
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@ActiveProfiles("local")
+@SpringBootTest
 public class TestAtomicReference {
-    public static void main(String[] args) {
+
+    @Test
+    public void testAtomicReference() {
         //原始user的值是tom 20
         User user = new User();
         user.setId(0L);
@@ -67,7 +69,7 @@ public class TestAtomicReference {
             user1.setAge(22);
             user1.setPassword("123456");
             final boolean b = userAtomicReference.compareAndSet(user, user1);
-            System.out.println(Thread.currentThread().getName()+"\t"+b+userAtomicReference.get());
+            System.out.println(Thread.currentThread().getName() + "\t" + b + userAtomicReference.get());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -84,7 +86,7 @@ public class TestAtomicReference {
             user1.setAge(21);
             user1.setPassword("1234567");
             int stamp = atomicStampedReference.getStamp();
-            log.info(Thread.currentThread().getName()+"\t第1次版本号是：{}",stamp);
+            log.info(Thread.currentThread().getName() + "\t第1次版本号是：{}", stamp);
             try {
                 //先睡眠一秒钟保证D线程第一次拿到的值跟C线程拿到的值一样
 //                Thread.sleep(1000);
@@ -92,22 +94,22 @@ public class TestAtomicReference {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            atomicStampedReference.compareAndSet(user, user1, stamp,atomicStampedReference.getStamp()+1);
-            log.info(Thread.currentThread().getName()+"\t第2次版本号是：{}",atomicStampedReference.getStamp());
+            atomicStampedReference.compareAndSet(user, user1, stamp, atomicStampedReference.getStamp() + 1);
+            log.info(Thread.currentThread().getName() + "\t第2次版本号是：{}", atomicStampedReference.getStamp());
 
             User user2 = new User();
             user2.setId(0L);
             user2.setName("Tom");
             user2.setAge(20);
             user2.setPassword("123456");
-            atomicStampedReference.compareAndSet(user1, user, atomicStampedReference.getStamp(),atomicStampedReference.getStamp()+1);
-            log.info(Thread.currentThread().getName()+"\t第3次版本号是：{}",atomicStampedReference.getStamp());
+            atomicStampedReference.compareAndSet(user1, user, atomicStampedReference.getStamp(), atomicStampedReference.getStamp() + 1);
+            log.info(Thread.currentThread().getName() + "\t第3次版本号是：{}", atomicStampedReference.getStamp());
         }, "C").start();
 
 
         new Thread(() -> {
             int stamp = atomicStampedReference.getStamp();
-            log.info(Thread.currentThread().getName()+"\t第1次版本号是：{}",stamp);
+            log.info(Thread.currentThread().getName() + "\t第1次版本号是：{}", stamp);
             try {
                 //先睡眠3秒钟保证C线程完成ABA操作
 //                Thread.sleep(1000);
@@ -121,12 +123,12 @@ public class TestAtomicReference {
             user4.setAge(22);
             user4.setPassword("123456");
             boolean booleanResult = atomicStampedReference.compareAndSet(user, user4, stamp, atomicStampedReference.getStamp() + 1);
-            log.info("修改成功否？{}",booleanResult);
-            log.info(Thread.currentThread().getName()+"\t版本号是：{}",atomicStampedReference.getStamp());
-            log.info(Thread.currentThread().getName()+"\t当前实际最新值是：{}",atomicStampedReference.getReference());
+            log.info("修改成功否？{}", booleanResult);
+            log.info(Thread.currentThread().getName() + "\t版本号是：{}", atomicStampedReference.getStamp());
+            log.info(Thread.currentThread().getName() + "\t当前实际最新值是：{}", atomicStampedReference.getReference());
 
         }, "D").start();
 
     }
-    }
+}
 
