@@ -1,4 +1,4 @@
-package okhttp;
+package com.blj.okhttp;
 
 import com.alibaba.fastjson.JSON;
 import com.blj.pojo.OkResponseEntity;

@@ -30,6 +30,7 @@ import java.util.concurrent.*;
 
 /**
  * 爬取zb交易所最新成交数据
+ *
  * @author BaiLiJun  on 2020/4/7
  */
 @Component
@@ -81,11 +82,12 @@ public class GrabBb3rdDataByZbTask {
 
     @PostConstruct
     public void startGrabBb3rdDataByZbCss() {
-       if (enable!=1){
-           return;
-       }
+        if (enable != 1) {
+            return;
+        }
 
-        WsClient client = new WsClient(zbWssUrl);
+//        WsClient client = new WsClient(zbWssUrl);
+        WsClient client = WsClient.getWsClient(zbWssUrl);
         client.connect();
         Map data = new TreeMap();
         data.put("event", "addChannel");
@@ -144,6 +146,19 @@ public class GrabBb3rdDataByZbTask {
         }
     }
 
+    /**
+     * WS重连策略
+     */
+    @Scheduled(cron = "*/59 * * * * *")
+    public void retryConnection() {
+        WsClient client = WsClient.getWsClient(zbWssUrl);
+        Boolean isClosed = client.getIsClosed();
+        if (!isClosed) {
+            client.close();
+            startGrabBb3rdDataByZbCss();
+        }
+    }
+
 
     @Scheduled(cron = "*/1 * * * * *")
     public void merge() {
@@ -172,7 +187,7 @@ public class GrabBb3rdDataByZbTask {
 
                 BigDecimal avgLastPrice = httpLast.add(wssLast).divide(new BigDecimal(2), 4, RoundingMode.DOWN);
                 logger.info("{},merge后的最新成交价为：{}", hashKey, avgLastPrice);
-                String key = "ticker:bb:lastPrice:" + bbSymbol.getAsset()+":"+bbSymbol.getSymbol() ;
+                String key = "ticker:bb:lastPrice:" + bbSymbol.getAsset() + ":" + bbSymbol.getSymbol();
                 HashMap<String, BigDecimal> map = new HashMap<>();
                 map.put(hashKey, avgLastPrice);
                 metadataDb5RedisUtil.hmset(key, map);
