@@ -3,15 +3,20 @@ package com.blj.bigDecimal;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author BaiLiJun  on 2020/1/2
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class BigDecimalTest2 {
 
@@ -102,6 +107,70 @@ public class BigDecimalTest2 {
             System.out.println("二者不相等");
         }
 
+
+    }
+
+
+    /**
+     * 小数点取舍
+     */
+    @Test
+    public void test8() {
+         BigDecimal bigDecimal = new BigDecimal("12.4564");
+         BigDecimal bigDecimal1 = bigDecimal.setScale(2, RoundingMode.UP);
+        System.out.println("小数点进一位 = " + bigDecimal1);
+
+        BigDecimal bigDecimal2 = bigDecimal.setScale(2, RoundingMode.DOWN);
+        System.out.println("小数点退一位 = " + bigDecimal2);
+
+        BigDecimal bigDecimal3 = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        System.out.println("小数点四舍五入 = " + bigDecimal3);
+    }
+
+    /**
+     * 绝对值
+     */
+    @Test
+    public void test9() {
+        BigDecimal a = new BigDecimal("12.4564");
+        BigDecimal b = new BigDecimal("10.4");
+        final BigDecimal abs = b.subtract(a).abs();
+        System.out.println("绝对值 = " + abs);
+    }
+
+    /**
+     * 生成中位数
+     */
+    @Test
+    public void test10() {
+        List<Long> ids= Arrays.asList(100L,90L,80L,70L);
+        // 生成中位数
+        Long j;
+        if (ids.size() % 2 == 0) {
+            j = (ids.get(ids.size() / 2 - 1) + ids.get(ids.size() / 2)) / 2;
+            System.out.println("中位数为" + j);
+        } else {
+            j = ids.get(ids.size() / 2);
+            System.out.println("中位数为" + j);
+        }
+
+    }
+
+    /**
+     * BigDecimal 中位数
+     */
+    @Test
+    public void test11() {
+        List<BigDecimal> ids= Arrays.asList(new BigDecimal("100"),new BigDecimal("90"),new BigDecimal("80"),new BigDecimal("70"));
+        // 生成中位数
+        BigDecimal j;
+        if (ids.size() % 2 == 0) {
+            j = (ids.get(ids.size() / 2 - 1) .add(ids.get(ids.size() / 2)) ) .divide(new BigDecimal("2"));
+            System.out.println("中位数为" + j);
+        } else {
+            j = ids.get(ids.size() / 2);
+            System.out.println("中位数为" + j);
+        }
 
     }
 

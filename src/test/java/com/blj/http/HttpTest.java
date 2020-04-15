@@ -19,6 +19,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,6 +33,7 @@ import java.util.Map;
  * @author BaiLiJun  on 2020/1/2
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class HttpTest {
 

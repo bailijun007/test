@@ -17,6 +17,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.client.RestTemplate;
@@ -29,6 +30,7 @@ import java.util.UUID;
  * @author BaiLiJun  on 2020/1/2
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class HttpTest2 {
     private static final Logger logger = LoggerFactory.getLogger(HttpTest2.class);
