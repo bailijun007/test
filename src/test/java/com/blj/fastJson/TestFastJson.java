@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.blj.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -102,6 +104,39 @@ public class TestFastJson {
         String jsonString = JSON.toJSONString(list);
         List<User> userList = JSON.parseArray(jsonString, User.class);
         log.info("JSON.parseArray={}", userList);
+    }
+
+    /**
+     * fastjson 解析List<Map>格式数据
+     */
+    @Test
+    public void testListMap() {
+        String json="{\n" +
+                "\t\"topcqc\": {\n" +
+                "\t\t\"high\": \"0.037655\",\n" +
+                "\t\t\"vol\": \"1350209.5\",\n" +
+                "\t\t\"last\": \"0.032021\",\n" +
+                "\t\t\"low\": \"0.032013\",\n" +
+                "\t\t\"buy\": \"0.032022\",\n" +
+                "\t\t\"sell\": \"0.034877\"\n" +
+                "\t},\n" +
+                "\t\"kanqc\": {\n" +
+                "\t\t\"high\": \"0.015547\",\n" +
+                "\t\t\"vol\": \"1685173\",\n" +
+                "\t\t\"last\": \"0.015135\",\n" +
+                "\t\t\"low\": \"0.015074\",\n" +
+                "\t\t\"buy\": \"0.015133\",\n" +
+                "\t\t\"sell\": \"0.015139\"\n" +
+                "\t}\n" +
+                "}";
+
+        JSONObject jsonObject = JSON.parseObject(json);
+        for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+            System.out.println("entry.getKey() = " + entry.getKey());
+            System.out.println("entry.getValue() = " + entry.getValue());
+        }
+
+
     }
 
 }
