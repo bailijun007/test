@@ -43,4 +43,26 @@ public class TestStr {
         final boolean tbtcusd = str.equalsIgnoreCase("tbtcusd");
         System.out.println("tbtcusd = " + tbtcusd);
     }
+
+    @Test
+    public void test3(){
+        String str ="tBTCUSD";
+
+        if (str.endsWith("USD")){
+            str="qw";
+        }
+        System.out.println("str = " + str);
+    }
+
+    /**
+     *  replaceAll()中第一个参数表示的是正则表达式, 意思是: 包含A-Z的任何字符,
+     *  而第二个参数就代表普通的字符串了。
+     */
+    @Test
+    public void test4(){
+        String s = "RL171280697057610752";
+        System.out.println(s.replaceAll("[A-Z]", ""));
+
+    }
+
 }

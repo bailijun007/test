@@ -92,8 +92,8 @@ public class TestFastJson {
         List<User> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             User user = new User();
-            user.setId(Long.parseLong(i+""));
-            user.setName("testParseArray"+i);
+            user.setId(Long.parseLong(i + ""));
+            user.setName("testParseArray" + i);
             user.setAge(i);
             user.setPassword("123456");
             user.setCreateDate(LocalDate.now());
@@ -111,7 +111,7 @@ public class TestFastJson {
      */
     @Test
     public void testListMap() {
-        String json="{\n" +
+        String json = "{\n" +
                 "\t\"topcqc\": {\n" +
                 "\t\t\"high\": \"0.037655\",\n" +
                 "\t\t\"vol\": \"1350209.5\",\n" +
@@ -135,8 +135,27 @@ public class TestFastJson {
             System.out.println("entry.getKey() = " + entry.getKey());
             System.out.println("entry.getValue() = " + entry.getValue());
         }
+    }
 
+    /**
+     *  JSON.parseArray 解析
+     *   [
+     * 	["tBTCUSD", 7265.1, 11.099559480000002, 7265.9, 20.18206469, -67.7, -0.0092, 7268.4, 7108.48189697, 7365.7, 7117],
+     * 	["tLTCUSD", 46.165, 2087.26285921, 46.166, 2573.5900832400002, -0.109, -0.0024, 46.143, 32150.06219219, 46.854, 44.742]
+     * 	]
+     */
+    @Test
+    public void testListMap2() {
+        String json = "[\n" +
+                "\t[\"tBTCUSD\", 7265.1, 11.099559480000002, 7265.9, 20.18206469, -67.7, -0.0092, 7268.4, 7108.48189697, 7365.7, 7117],\n" +
+                "\t[\"tLTCUSD\", 46.165, 2087.26285921, 46.166, 2573.5900832400002, -0.109, -0.0024, 46.143, 32150.06219219, 46.854, 44.742]\n" +
+                "]";
 
+        JSONArray objects = JSON.parseArray(json);
+        for (Object object : objects) {
+            JSONArray jsonArray = JSON.parseArray(object.toString());
+            System.out.println("symbol=" + jsonArray.getString(0) + ",\t lastPrice ="+jsonArray.getBigDecimal(7));
+        }
     }
 
 }

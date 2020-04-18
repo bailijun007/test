@@ -83,7 +83,7 @@ public class Sub1 {
         });
     }
 
-    @Scheduled(cron = "*/5 * * * * *")
+//    @Scheduled(cron = "*/5 * * * * *")
     public void trigger2() {
         String channel = PubSubRedisKey.TEST_PUBSUB;
 

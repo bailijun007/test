@@ -121,7 +121,7 @@ public class GrabBb3rdDataByZbTask {
     }
 
 
-    @Scheduled(cron = "*/1 * * * * *")
+//    @Scheduled(cron = "*/1 * * * * *")
     public void startGrabBb3rdDataByZbHttps() {
         List<BBSymbol> bbSymbolList = supportBbGroupIdsJobService.getSymbols();
         if (!CollectionUtils.isEmpty(bbSymbolList)) {
@@ -149,7 +149,7 @@ public class GrabBb3rdDataByZbTask {
     /**
      * WS重连策略
      */
-    @Scheduled(cron = "*/59 * * * * *")
+//    @Scheduled(cron = "*/59 * * * * *")
     public void retryConnection() {
         WsClient client = WsClient.getWsClient(zbWssUrl);
         Boolean isClosed = client.getIsClosed();
@@ -160,7 +160,7 @@ public class GrabBb3rdDataByZbTask {
     }
 
 
-    @Scheduled(cron = "*/1 * * * * *")
+//    @Scheduled(cron = "*/1 * * * * *")
     public void merge() {
         List<BBSymbol> bbSymbolList = supportBbGroupIdsJobService.getSymbols();
         if (!CollectionUtils.isEmpty(bbSymbolList)) {
