@@ -158,4 +158,39 @@ public class TestFastJson {
         }
     }
 
+    /**
+     *  [
+     *     {
+     *         "id": 140520649,
+     *             "price": "172.40000000",
+     *             "qty": "0.12239000",
+     *             "quoteQty": "21.10003600",
+     *             "time": 1587210209544,
+     *             "isBuyerMaker": true,
+     *             "isBestMatch": true
+     *     }
+     * ]
+     */
+    @Test
+    public void testParseArray2(){
+        String json=" [\n" +
+                "    {\n" +
+                "        \"id\": 140520649,\n" +
+                "            \"price\": \"172.40000000\",\n" +
+                "            \"qty\": \"0.12239000\",\n" +
+                "            \"quoteQty\": \"21.10003600\",\n" +
+                "            \"time\": 1587210209544,\n" +
+                "            \"isBuyerMaker\": true,\n" +
+                "            \"isBestMatch\": true\n" +
+                "    }\n" +
+                "]";
+        JSONArray objects = JSON.parseArray(json);
+
+        for (Object object : objects) {
+            System.out.println("object = " + object);
+        }
+
+
+
+    }
 }
