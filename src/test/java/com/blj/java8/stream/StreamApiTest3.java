@@ -195,6 +195,18 @@ public class StreamApiTest3 {
         System.out.println("年龄最小值：" + collect.getMin());
 
     }
+    @Test
+    public void testLongSummaryStatistics(){
+        List<Long> startAndEndList=new ArrayList<>();
+        startAndEndList.add(1563909600000L);
+        startAndEndList.add(1563919800000L);
+        startAndEndList.add(1111111111111L);
+        LongSummaryStatistics collect = startAndEndList.stream().collect(Collectors.summarizingLong(Long::longValue));
+        long startMs = collect.getMin();
+        System.out.println("startMs = " + startMs);
+        long endMs = collect.getMax();
+        System.out.println("endMs = " + endMs);
+    }
 
     //拼接字符串
     @Test

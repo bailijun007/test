@@ -63,6 +63,11 @@
 
     </select>
 
+    <select id="querySum" resultType="java.math.BigDecimal">
+        select sum(age)
+        from  t_user
+    </select>
+
     <update id="batchUpdate" parameterType="java.util.List">
         <foreach collection="userList" item="item" index="index" open="" close="" separator=";">
             UPDATE t_user

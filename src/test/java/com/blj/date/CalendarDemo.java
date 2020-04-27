@@ -23,7 +23,8 @@ public class CalendarDemo {
      */
     @Test
     public void toMinute(){
-        long l=1584728760000L;
+       long l=1584728760000L;
+        System.out.println("l = " + l);
         long currentMinute = TimeUnit.MILLISECONDS.toMinutes(l);
         System.out.println("currentMinute = " + currentMinute); //currentMinute = 26395439
     }

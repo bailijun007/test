@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -59,8 +60,7 @@ public class UserTest {
                     .setPassword("123456" + i);
             userList.add(user);
         }
-        userMapper.batchSave(userList);
-
+          userMapper.batchSave(userList);
 
     }
 
@@ -111,6 +111,12 @@ public class UserTest {
         Map<String, Object> map = new HashMap<>();
         map.put("age", "20");
         Integer count = userMapper.queryCount(map);
+        System.out.println("count = " + count);
+    }
+
+    @Test
+    public void testSum() {
+        BigDecimal count =userMapper.querySum();
         System.out.println("count = " + count);
     }
 

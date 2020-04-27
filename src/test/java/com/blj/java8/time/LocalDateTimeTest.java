@@ -48,8 +48,9 @@ public class LocalDateTimeTest {
     //时间戳转LocalDateTime
     @Test
     public void test4() {
-        long timestamp = 1578475838938L;
-        LocalDateTime localDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.ofHours(8)).toLocalDateTime();
+//        long timestamp = 1578475838938L;
+        long timestamp =System.currentTimeMillis();
+        LocalDateTime localDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.systemDefault()).toLocalDateTime();
         System.out.println("localDateTime = " + localDateTime);
     }
 

@@ -1,7 +1,11 @@
 package com.blj.java8.time;
 
+import com.blj.config.redis.jedis.MetadataRedisBeans;
+import com.blj.config.redis.jedis.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -24,6 +28,10 @@ import java.util.concurrent.*;
 @RunWith(SpringRunner.class)
 public class TestSimpleDateFormat {
 
+    @Autowired
+    @Qualifier("metadataRedisUtil")
+    private RedisUtil metadataRedisUtil;
+
     //多线程操作时间类不安全
     @Test
     public void test1() throws ExecutionException, InterruptedException {
@@ -37,10 +45,10 @@ public class TestSimpleDateFormat {
         };
 
 
-        List<Future<Date>> list=new ArrayList<>();
-        ExecutorService pool= Executors.newFixedThreadPool(10);
+        List<Future<Date>> list = new ArrayList<>();
+        ExecutorService pool = Executors.newFixedThreadPool(10);
 
-        for (int i = 0; i <10 ; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add(pool.submit(task));
         }
 
@@ -62,10 +70,10 @@ public class TestSimpleDateFormat {
         };
 
 
-        List<Future<Date>> list=new ArrayList<>();
-        ExecutorService pool= Executors.newFixedThreadPool(10);
+        List<Future<Date>> list = new ArrayList<>();
+        ExecutorService pool = Executors.newFixedThreadPool(10);
 
-        for (int i = 0; i <10 ; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add(pool.submit(task));
         }
 
@@ -80,20 +88,20 @@ public class TestSimpleDateFormat {
     @Test
     public void test3() throws Exception {
 
-        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyyMMdd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 
         Callable<LocalDate> task = new Callable<LocalDate>() {
             @Override
             public LocalDate call() throws Exception {
-                return LocalDate.parse("20191229",dtf);
+                return LocalDate.parse("20191229", dtf);
             }
         };
 
 
-        List<Future<LocalDate>> list=new ArrayList<>();
-        ExecutorService pool= Executors.newFixedThreadPool(10);
+        List<Future<LocalDate>> list = new ArrayList<>();
+        ExecutorService pool = Executors.newFixedThreadPool(10);
 
-        for (int i = 0; i <10 ; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add(pool.submit(task));
         }
 
@@ -106,12 +114,21 @@ public class TestSimpleDateFormat {
 
 
 
+    @Test
+    public void test4() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate localDate = LocalDate.now();
+        final String format = localDate.format(dtf);
+        System.out.println("format = " + format);
+        metadataRedisUtil.set(format,format);
+    }
+
 
 }
 
 
-class DateFormatThreadLocal{
-    private static final ThreadLocal<DateFormat> df=new ThreadLocal<DateFormat>(){
+class DateFormatThreadLocal {
+    private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() {
         protected DateFormat initialValue() {
             return new SimpleDateFormat("yyyyMMdd");
         }

@@ -4,6 +4,7 @@ import com.blj.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -25,4 +26,6 @@ public interface UserMapper extends Mapper<User> {
 
 
     int batchUpdateWithTwoParam(@Param("userList") List<User> userList, @Param("id") long id);
+
+    BigDecimal querySum();
 }
