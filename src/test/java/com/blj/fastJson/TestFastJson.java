@@ -205,7 +205,7 @@ public class TestFastJson {
 
     /**
      *
-     * 判断字符串是JSONObject还是JSONArray
+     * 用fastjson 判断字符串是JSONObject还是JSONArray
      * [{
      * "asset": "USDT",
      * "created": 1587968105445,
