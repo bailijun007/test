@@ -28,4 +28,11 @@ public interface UserMapper extends Mapper<User> {
     int batchUpdateWithTwoParam(@Param("userList") List<User> userList, @Param("id") long id);
 
     BigDecimal querySum();
+
+    int existTable(@Param("dbName") String dbName,@Param("tableName") String tableName);
+
+    void dropTable(@Param("tableName") String tableName);
+
+    void createUserTable(@Param("tableName") String tableName);
+
 }

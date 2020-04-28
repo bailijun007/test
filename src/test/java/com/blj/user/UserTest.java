@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.lang.model.element.VariableElement;
 import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -60,7 +61,7 @@ public class UserTest {
                     .setPassword("123456" + i);
             userList.add(user);
         }
-          userMapper.batchSave(userList);
+        userMapper.batchSave(userList);
 
     }
 
@@ -116,7 +117,7 @@ public class UserTest {
 
     @Test
     public void testSum() {
-        BigDecimal count =userMapper.querySum();
+        BigDecimal count = userMapper.querySum();
         System.out.println("count = " + count);
     }
 
@@ -127,8 +128,74 @@ public class UserTest {
             System.out.println("user = " + user);
         }
         final PageInfo<User> info = new PageInfo<>(userList);
-        System.out.println("总条数为："+info.getTotal());
+        System.out.println("总条数为：" + info.getTotal());
 
+    }
+
+
+    /**
+     * 判断某个库的某个表是否存在
+     */
+    @Test
+    public void testExistTable() {
+        int i = userMapper.existTable("boot_test", "t_user");
+        if (i == 1) {
+            System.out.println("存在");
+        } else {
+            System.out.println("不存在");
+        }
+    }
+
+    /**
+     * 删除某个表
+     */
+    @Test
+    public void testDropTable() {
+        userMapper.dropTable("t_test");
+        System.out.println("删除成功");
+    }
+
+
+    /**
+     * 创建某个表
+     */
+    @Test
+    public void testCreateUserTable() {
+        String tableName = "t_user2";
+        userMapper.createUserTable(tableName);
+        System.out.println("创建" + tableName + "成功！");
+    }
+
+    /**
+     * 是否创建某个表，存在则过滤，不存在就创建
+     */
+    @Test
+    public void testIsCreateTable(){
+        String tableName = "t_user2";
+        int i = userMapper.existTable("boot_test", tableName);
+        if (i == 1) {
+            System.out.println("已经存在");
+        } else {
+            System.out.println("不存在,则创建");
+            userMapper.createUserTable(tableName);
+            System.out.println("创建成功");
+        }
+    }
+
+    /**
+     * 是否删除某个表
+     */
+    @Test
+    public void testIsDropTable(){
+        String tableName = "t_user2";
+        int i = userMapper.existTable("boot_test", tableName);
+        if (i == 1) {
+            System.out.println("存在，则删除");
+            userMapper.dropTable(tableName);
+            System.out.println("删除成功！");
+        } else {
+            System.out.println("不存在这个表");
+        }
     }
 
 }
