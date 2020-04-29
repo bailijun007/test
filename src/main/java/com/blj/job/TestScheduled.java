@@ -11,8 +11,8 @@ import javax.annotation.PostConstruct;
 @Component
 public class TestScheduled {
 
-    @Scheduled(cron = "0 * * * * ?")
-    @PostConstruct
+//    @Scheduled(cron = "0 * * * * ?")
+//    @PostConstruct
     public void test(){
         System.out.println("初始化执行一次,之后每分钟执行一次");
     }

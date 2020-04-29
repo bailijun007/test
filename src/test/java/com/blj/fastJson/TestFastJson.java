@@ -20,6 +20,29 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
+ *  /*
+ *  json array转java List 需要fastjson jar包
+ *
+ * 常用fastjson 用法：
+ *  1：fastjson List转JSONArray
+ * List<T> list = new ArrayList<T>();
+ * JSONArray array= JSONArray.parseArray(JSON.toJSONString(list))；
+ *
+ *  2.fastjson  JSONArray转List
+ *   JSONArray array = new JSONArray();
+ *   List<T> list = JSONObject.parseArray(array.toJSONString(), T.class);
+ *
+ *    3.fastjson  字符串转List
+ *      String str = "";
+ *      List<T> list = JSONObject.parseArray(str,T.class);
+ *
+ *    4.fastjson  字符串转Map
+ *      String str = "";
+ *      Map mapType =  JSONObject.parseObject(str,Map.class);
+ *     for (Object obj : mapType.keySet()){
+ *          System.out.println("key为："+obj+"值为："+mapType.get(obj));
+ *       }
+ *
  * @author BaiLiJun  on 2020/3/13
  */
 @Slf4j
