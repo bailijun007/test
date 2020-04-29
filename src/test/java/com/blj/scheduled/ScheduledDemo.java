@@ -27,4 +27,8 @@ public class ScheduledDemo {
     public void test2() {
         log.info("test2, 5秒执行一次，不sleep");
     }
+
+
+
+
 }
