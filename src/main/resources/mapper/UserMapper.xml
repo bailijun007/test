@@ -96,6 +96,21 @@
         select count(1) from information_schema.TABLES where table_schema = #{dbName} and  table_name = #{tableName}
     </select>
 
+    <select id="queryByTimeInterval" resultType="com.blj.pojo.User">
+        select
+       *
+        from t_user
+        <where>
+            <if test="id!=null">
+                id>#{id}
+            </if>
+            and  create_date&gt;=#{createDateBegin}
+            and create_date &lt;=#{createDateEnd}
+        </where>
+        order by id asc
+        LIMIT 0,${endLimit}
+    </select>
+
     <update id="dropTable">
          DROP TABLE IF EXISTS ${tableName}
     </update>

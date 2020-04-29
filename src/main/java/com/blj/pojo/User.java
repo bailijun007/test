@@ -66,6 +66,15 @@ public class User implements Serializable {
         this.name = name;
     }
 
+
+    public User(String name, Integer age, String password, LocalDate createDate, LocalDateTime createTime) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+        this.createDate = createDate;
+        this.createTime = createTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

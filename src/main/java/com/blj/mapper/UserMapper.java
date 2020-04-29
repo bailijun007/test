@@ -35,4 +35,5 @@ public interface UserMapper extends Mapper<User> {
 
     void createUserTable(@Param("tableName") String tableName);
 
+    List<User> queryByTimeInterval(@Param("id") Long  id,@Param("createDateBegin") String createDateBegin,@Param("createDateEnd") String createDateEnd, @Param("endLimit") int endLimit);
 }

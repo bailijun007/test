@@ -52,7 +52,7 @@ public class UserTest {
     @Test
     public void batchSave() {
         List<User> userList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 200; i++) {
             User user = new User();
             user.setCreateDate(LocalDate.now())
                     .setCreateTime(LocalDateTime.now())
