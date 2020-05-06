@@ -1,4 +1,4 @@
-package com.blj.config.redis;
+package com.blj.config.redis.template;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

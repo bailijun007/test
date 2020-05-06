@@ -1,6 +1,7 @@
 package com.blj.date;
 
 import com.blj.util.DateUtil;
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +31,19 @@ public class DateTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 需要 <artifactId>joda-time</artifactId>
+     */
+    @Test
+    public void testDateTime(){
+        long timestamp = System.currentTimeMillis();
+        DateTime dateTime = new DateTime(timestamp);
+        System.out.println("dateTime="+dateTime);
+        DateTime minus8HoursTime = dateTime.minusHours(8);
+        System.out.println("minus8HoursTime="+minus8HoursTime);
+        System.out.println("减去8小时，转成时间戳为："+minus8HoursTime.getMillis());
     }
 
 }
