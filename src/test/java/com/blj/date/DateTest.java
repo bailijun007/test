@@ -2,6 +2,8 @@ package com.blj.date;
 
 import com.blj.util.DateUtil;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,6 +46,15 @@ public class DateTest {
         DateTime minus8HoursTime = dateTime.minusHours(8);
         System.out.println("minus8HoursTime="+minus8HoursTime);
         System.out.println("减去8小时，转成时间戳为："+minus8HoursTime.getMillis());
+    }
+
+    @Test
+    public void test2(){
+        String tableName="kline_data_";
+         String text = "2020-05-06 16:51";
+         String[] split = text.split("-");
+        tableName=tableName+split[0]+split[1];
+        System.out.println("tableName = " + tableName);
     }
 
 }
