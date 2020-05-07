@@ -1,6 +1,8 @@
 package com.blj.user;
 
 import com.blj.mapper.bootTest1.UserMapper;
+import com.blj.mapper.bootTest2.SecondOrderMapper;
+import com.blj.pojo.Order;
 import com.blj.pojo.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.pagehelper.PageInfo;
@@ -33,6 +35,8 @@ public class UserTest {
     private UserMapper userMapper;
 
 
+    @Autowired
+    private SecondOrderMapper secondOrderMapper;
 
 
     /**
@@ -93,6 +97,23 @@ public class UserTest {
         List<User> list = userMapper.findAll();
         for (User user : list) {
             System.out.println("user = " + user);
+        }
+    }
+
+    /**
+     * 模拟跨数据库查询
+     * userMapper 数据库是：boot_test,
+     * secondOrderMapper 数据库是：boot_test2
+     */
+    @Test
+    public void testManyDataSource(){
+        List<User> list = userMapper.findAll();
+        for (User user : list) {
+            System.out.println("user = " + user);
+        }
+         List<Order> orderList = secondOrderMapper.findAll();
+        for (Order order : orderList) {
+            System.out.println("order = " + order);
         }
     }
 

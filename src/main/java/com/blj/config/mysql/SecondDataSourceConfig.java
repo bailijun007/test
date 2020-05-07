@@ -48,13 +48,13 @@ public class SecondDataSourceConfig {
     private PageInterceptor pageInterceptor;
 
     @Bean(name = "secondDataSource")
-    @ConfigurationProperties("spring.datasource.master")
+    @ConfigurationProperties("spring.datasource.second")
     public DataSource secondDataSource(){
         return DataSourceBuilder.create().type(dataSourcceType).build();
     }
 
     @Bean(name = "secondTransactionManager")
-    public DataSourceTransactionManager masterTransactionManager(){
+    public DataSourceTransactionManager secondTransactionManager(){
         return new DataSourceTransactionManager(secondDataSource());
     }
 
