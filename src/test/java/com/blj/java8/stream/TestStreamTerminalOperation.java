@@ -1,6 +1,6 @@
 package com.blj.java8.stream;
 
-import com.blj.mapper.UserMapper;
+import com.blj.mapper.bootTest1.UserMapper;
 import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +46,7 @@ public class TestStreamTerminalOperation {
 
     @Test
     public void test2(){
-         List<User> userList = userMapper.selectAll();
+         List<User> userList = userMapper.findAll();
         if (userList.stream().map(User::getAge).anyMatch(age->age>60)) {
             System.out.println("存在60岁以上的用户 " );
             System.out.println("60岁以上的用户有："+userList.stream().map(User::getAge).filter(age -> age > 60).count()+"个");

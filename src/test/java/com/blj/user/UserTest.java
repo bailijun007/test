@@ -1,6 +1,6 @@
 package com.blj.user;
 
-import com.blj.mapper.UserMapper;
+import com.blj.mapper.bootTest1.UserMapper;
 import com.blj.pojo.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.pagehelper.PageInfo;
@@ -32,18 +32,7 @@ public class UserTest {
     @Autowired
     private UserMapper userMapper;
 
-    @Test
-    public void insert() {
-        User user = new User();
-        user.setCreateDate(LocalDate.now())
-                .setCreateTime(LocalDateTime.now())
-                .setName("李四")
-                .setAge(20)
-                .setPassword("123456");
 
-
-        userMapper.insertSelective(user);
-    }
 
 
     /**
@@ -101,7 +90,7 @@ public class UserTest {
 
     @Test
     public void queryAll() {
-        List<User> list = userMapper.selectAll();
+        List<User> list = userMapper.findAll();
         for (User user : list) {
             System.out.println("user = " + user);
         }
@@ -123,7 +112,7 @@ public class UserTest {
 
     @Test
     public void test4() {
-        final List<User> userList = userMapper.selectAll();
+        final List<User> userList = userMapper.findAll();
         for (User user : userList) {
             System.out.println("user = " + user);
         }

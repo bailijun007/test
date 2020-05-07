@@ -1,4 +1,4 @@
-package com.blj.mapper;
+package com.blj.mapper.bootTest1;
 
 import com.blj.pojo.C2cOrder;
 

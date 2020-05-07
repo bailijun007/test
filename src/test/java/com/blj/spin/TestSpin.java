@@ -1,6 +1,6 @@
 package com.blj.spin;
 
-import com.blj.mapper.UserMapper;
+import com.blj.mapper.bootTest1.UserMapper;
 import com.blj.pojo.User;
 import com.blj.redis.pubsub.vo.BbTradeVo;
 import org.junit.Test;

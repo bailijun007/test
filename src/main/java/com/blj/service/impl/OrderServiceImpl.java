@@ -1,6 +1,6 @@
 package com.blj.service.impl;
 
-import com.blj.mapper.OrderMapper;
+import com.blj.mapper.bootTest1.OrderMapper;
 import com.blj.pojo.Order;
 import com.blj.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

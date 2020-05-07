@@ -1,13 +1,12 @@
 package com.blj.service.impl;
 
-import com.blj.mapper.StockMapper;
+import com.blj.mapper.bootTest1.StockMapper;
 import com.blj.pojo.Stock;
 import com.blj.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.HashMap;
 import java.util.List;

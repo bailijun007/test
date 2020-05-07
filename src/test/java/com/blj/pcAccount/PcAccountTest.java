@@ -1,8 +1,7 @@
 package com.blj.pcAccount;
 
-import com.blj.mapper.PcAccountMapper;
+import com.blj.mapper.bootTest1.PcAccountMapper;
 import com.blj.pojo.PcAccount;
-import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

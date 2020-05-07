@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.blj.mapper.UserMapper;
+import com.blj.mapper.bootTest1.UserMapper;
 import com.blj.pojo.User;
 import com.blj.redis.pubsub.constant.BbKLineKey;
 import com.blj.redis.pubsub.constant.PubSubRedisKey;
@@ -76,7 +76,7 @@ public class Sub1 {
             while (true) {
                 User user = queue.poll();
                 if (null != user) {
-                    userMapper.insert(user);
+//                    userMapper.insert(user);
                     log.info("保存成功:{}", user);
                 }
             }

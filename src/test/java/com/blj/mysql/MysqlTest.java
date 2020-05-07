@@ -1,6 +1,6 @@
 package com.blj.mysql;
 
-import com.blj.mapper.UserMapper;
+import com.blj.mapper.bootTest1.UserMapper;
 import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class MysqlTest {
         Instant start = Instant.now();
 
 
-        List<User> list = userMapper.selectAll();
+        List<User> list = userMapper.findAll();
 
         List<User> userList = list.stream().skip(10 * 0)
                 .limit(10)

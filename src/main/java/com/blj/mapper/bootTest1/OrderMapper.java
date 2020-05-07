@@ -1,4 +1,4 @@
-package com.blj.mapper;
+package com.blj.mapper.bootTest1;
 
 import com.blj.pojo.Order;
 import org.springframework.stereotype.Component;
