@@ -106,12 +106,12 @@ public class UserTest {
      * secondOrderMapper 数据库是：boot_test2
      */
     @Test
-    public void testManyDataSource(){
+    public void testManyDataSource() {
         List<User> list = userMapper.findAll();
         for (User user : list) {
             System.out.println("user = " + user);
         }
-         List<Order> orderList = secondOrderMapper.findAll();
+        List<Order> orderList = secondOrderMapper.findAll();
         for (Order order : orderList) {
             System.out.println("order = " + order);
         }
@@ -157,6 +157,7 @@ public class UserTest {
     }
 
     /**
+     *
      * 删除某个表
      */
     @Test
@@ -180,7 +181,7 @@ public class UserTest {
      * 是否创建某个表，存在则过滤，不存在就创建
      */
     @Test
-    public void testIsCreateTable(){
+    public void testIsCreateTable() {
         String tableName = "t_user2";
         int i = userMapper.existTable("boot_test", tableName);
         if (i == 1) {
@@ -196,7 +197,7 @@ public class UserTest {
      * 是否删除某个表
      */
     @Test
-    public void testIsDropTable(){
+    public void testIsDropTable() {
         String tableName = "t_user2";
         int i = userMapper.existTable("boot_test", tableName);
         if (i == 1) {
