@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Instant;
@@ -20,6 +21,7 @@ import java.util.Map;
  * @author BaiLiJun  on 2020/1/8
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class OrderTest {
     @Autowired
