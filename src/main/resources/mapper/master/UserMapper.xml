@@ -96,6 +96,8 @@
         select count(1) from information_schema.TABLES where table_schema = #{dbName} and  table_name = #{tableName}
     </select>
 
+
+
     <select id="queryByTimeInterval" resultType="com.blj.pojo.User">
         select
        *

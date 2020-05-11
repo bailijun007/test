@@ -5,10 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -22,7 +19,7 @@ public class LocalDateTest2 {
     @Test
     public void testLocalDate1() {
         LocalDate now = LocalDate.now();
-        long timestamp = now.atStartOfDay(ZoneOffset.ofHours(8)).toInstant().toEpochMilli();
+        long timestamp = now.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
         System.out.println("timestamp = " + timestamp);
     }
 
@@ -46,7 +43,7 @@ public class LocalDateTest2 {
     @Test
     public void testLocalDate4() {
         long timestamp = System.currentTimeMillis();
-        LocalDate localDate = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.ofHours(8)).toLocalDate();
+        LocalDate localDate = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
         System.out.println("localDate = " + localDate);
     }
 
