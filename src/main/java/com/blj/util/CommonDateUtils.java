@@ -1,10 +1,9 @@
 package com.blj.util;
 
+import org.springframework.util.StringUtils;
+
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,6 +64,17 @@ public final class CommonDateUtils {
      */
     public static Long localDateToTimestamp(LocalDate localDate){
         return  localDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+
+    public  static String getDefaultDateTime(String startTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime dateTime = LocalDateTime.now();
+        //如果开始时间，结束时间没有值则给默认今天时间
+        if (StringUtils.isEmpty(startTime)) {
+            startTime = formatter.format(dateTime);
+        }
+        return startTime;
     }
 
     /**
