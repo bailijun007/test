@@ -1,6 +1,6 @@
 package com.blj.service.impl;
 
-import com.blj.mapper.bootTest1.StockMapper;
+import com.blj.mapper.StockMapper;
 import com.blj.pojo.Stock;
 import com.blj.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;

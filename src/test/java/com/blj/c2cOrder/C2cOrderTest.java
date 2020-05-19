@@ -1,6 +1,6 @@
 package com.blj.c2cOrder;
 
-import com.blj.mapper.bootTest1.C2cOrderMapper;
+import com.blj.mapper.C2cOrderMapper;
 import com.blj.pojo.C2cOrder;
 import com.blj.pojo.NotifyParam;
 import org.junit.Test;

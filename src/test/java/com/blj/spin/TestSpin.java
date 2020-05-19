@@ -1,8 +1,7 @@
 package com.blj.spin;
 
-import com.blj.mapper.bootTest1.UserMapper;
+import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
-import com.blj.redis.pubsub.vo.BbTradeVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

@@ -1,6 +1,6 @@
 package com.blj.mysql;
 
-import com.blj.mapper.bootTest1.UserMapper;
+import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;

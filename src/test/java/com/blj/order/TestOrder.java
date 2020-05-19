@@ -1,6 +1,6 @@
 package com.blj.order;
 
-import com.blj.mapper.bootTest1.TOrderDao;
+import com.blj.mapper.TOrderDao;
 import com.blj.pojo.TOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

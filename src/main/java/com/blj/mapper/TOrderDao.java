@@ -1,4 +1,4 @@
-package com.blj.mapper.bootTest1;
+package com.blj.mapper;
 
 import com.blj.pojo.TOrder;
 import org.apache.ibatis.annotations.Param;

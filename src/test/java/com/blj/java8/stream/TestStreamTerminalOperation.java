@@ -1,6 +1,6 @@
 package com.blj.java8.stream;
 
-import com.blj.mapper.bootTest1.UserMapper;
+import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * stream接口终端操作

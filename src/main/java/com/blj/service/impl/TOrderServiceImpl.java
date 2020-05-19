@@ -1,7 +1,7 @@
 package com.blj.service.impl;
 
 import com.blj.pojo.TOrder;
-import com.blj.mapper.bootTest1.TOrderDao;
+import com.blj.mapper.TOrderDao;
 import com.blj.service.TOrderService;
 import org.springframework.stereotype.Service;
 

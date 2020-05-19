@@ -1,10 +1,8 @@
 package com.blj.user;
 
-import com.blj.mapper.bootTest1.UserMapper;
-import com.blj.mapper.bootTest2.SecondOrderMapper;
-import com.blj.pojo.Order;
+import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.blj.util.CommonIntegerUtil;
 import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.lang.model.element.VariableElement;
-import javax.swing.*;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,8 +30,8 @@ public class UserTest {
     private UserMapper userMapper;
 
 
-    @Autowired
-    private SecondOrderMapper secondOrderMapper;
+//    @Autowired
+//    private SecondOrderMapper secondOrderMapper;
 
 
     /**
@@ -111,10 +106,10 @@ public class UserTest {
         for (User user : list) {
             System.out.println("user = " + user);
         }
-         List<Order> orderList = secondOrderMapper.findAll();
-        for (Order order : orderList) {
-            System.out.println("order = " + order);
-        }
+//         List<Order> orderList = secondOrderMapper.findAll();
+//        for (Order order : orderList) {
+//            System.out.println("order = " + order);
+//        }
     }
 
     @Test
@@ -208,6 +203,19 @@ public class UserTest {
         } else {
             System.out.println("不存在这个表");
         }
+    }
+
+    @Test
+    public void testDemo(){
+        boolean numeric = CommonIntegerUtil.isNumeric("-19162431.1254");
+        System.out.println("numeric = " + numeric);
+
+        boolean numeric2 = CommonIntegerUtil.isNumeric("-98877.54");
+        System.out.println("numeric2 = " + numeric2);
+
+        boolean numeric3 = CommonIntegerUtil.isNumeric("98877.54");
+        System.out.println("numeric3 = " + numeric3);
+
     }
 
 }

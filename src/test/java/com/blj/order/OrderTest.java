@@ -1,6 +1,6 @@
 package com.blj.order;
 
-import com.blj.mapper.bootTest1.OrderMapper;
+import com.blj.mapper.OrderMapper;
 import com.blj.pojo.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;

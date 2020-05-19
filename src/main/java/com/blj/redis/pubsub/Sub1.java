@@ -1,31 +1,19 @@
 package com.blj.redis.pubsub;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.blj.mapper.bootTest1.UserMapper;
+import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
-import com.blj.redis.pubsub.constant.BbKLineKey;
 import com.blj.redis.pubsub.constant.PubSubRedisKey;
-import com.blj.redis.pubsub.kline.BBKlineBuild;
-import com.blj.redis.pubsub.vo.BbTradeVo;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
