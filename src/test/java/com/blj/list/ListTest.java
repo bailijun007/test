@@ -30,7 +30,7 @@ public class ListTest {
         twoList.add(4);
         twoList.addAll(oneList);
         for (Integer integer : twoList) {
-            System.out.println("integer = " + integer);
+            System.out.println("isNumeric = " + integer);
         }
     }
 

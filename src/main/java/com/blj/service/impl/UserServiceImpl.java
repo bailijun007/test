@@ -3,7 +3,7 @@ package com.blj.service.impl;
 import com.blj.common.exception.ExceptionEnums;
 import com.blj.common.exception.TtException;
 import com.blj.common.util.PageResult;
-import com.blj.mapper.bootTest1.UserMapper;
+import com.blj.mapper.UserMapper;
 import com.blj.pojo.User;
 import com.blj.service.UserService;
 import com.github.pagehelper.PageHelper;

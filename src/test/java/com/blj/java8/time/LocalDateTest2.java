@@ -5,10 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -22,7 +20,7 @@ public class LocalDateTest2 {
     @Test
     public void testLocalDate1() {
         LocalDate now = LocalDate.now();
-        long timestamp = now.atStartOfDay(ZoneOffset.ofHours(8)).toInstant().toEpochMilli();
+        long timestamp = now.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
         System.out.println("timestamp = " + timestamp);
     }
 
@@ -46,7 +44,7 @@ public class LocalDateTest2 {
     @Test
     public void testLocalDate4() {
         long timestamp = System.currentTimeMillis();
-        LocalDate localDate = Instant.ofEpochMilli(timestamp).atZone(ZoneOffset.ofHours(8)).toLocalDate();
+        LocalDate localDate = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
         System.out.println("localDate = " + localDate);
     }
 
@@ -63,6 +61,24 @@ public class LocalDateTest2 {
         }else {
             System.out.println("---------");
         }
+    }
+
+    @Test
+    public void test(){
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyyMM");
+         LocalDateTime now = LocalDateTime.now();
+        System.out.println("now = " + now);
+        final String s = now.toString();
+        System.out.println("s = " + s);
+        final String[] split = s.split("T");
+        System.out.println(split[0]);
+
+         LocalDate localDate = now.toLocalDate();
+        final String format = localDate.format(formatter);
+        System.out.println("format = " + format);
+
+
+
     }
 
 }

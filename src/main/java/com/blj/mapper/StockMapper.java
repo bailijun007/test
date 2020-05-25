@@ -1,4 +1,4 @@
-package com.blj.mapper.bootTest1;
+package com.blj.mapper;
 
 import com.blj.pojo.Order;
 import com.blj.pojo.Stock;

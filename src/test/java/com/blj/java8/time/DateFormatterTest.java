@@ -62,7 +62,7 @@ public class DateFormatterTest {
         LocalDateTime ldt = LocalDateTime.parse(str, dtf2);
         System.out.println("String类型的时间转成LocalDateTime = " + ldt);
         String format3 = ldt.format(dtf2);
-        System.out.println("自定义格式化时间: " + format3);
+        System.out.println("转成String类型: " + format3);
 
 
         //LocalDateTime转成String类型的时间

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blj.mapper.TOrderDao">
+
+    <resultMap type="com.blj.pojo.TOrder" id="TOrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderName" column="order_name" jdbcType="VARCHAR"/>
+        <result property="orderUser" column="order_user" jdbcType="VARCHAR"/>
+        <result property="created" column="created" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TOrderMap">
+        select
+          id, order_name, order_user, created
+        from boot_test.t_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TOrderMap">
+        select
+          id, order_name, order_user, created
+        from boot_test.t_order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TOrderMap">
+        select
+          id, order_name, order_user, created
+        from boot_test.t_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderName != null and orderName != ''">
+                and order_name = #{orderName}
+            </if>
+            <if test="orderUser != null and orderUser != ''">
+                and order_user = #{orderUser}
+            </if>
+            <if test="created != null">
+                and created = #{created}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into boot_test.t_order(order_name, order_user, created)
+        values (#{orderName}, #{orderUser}, #{created})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update boot_test.t_order
+        <set>
+            <if test="orderName != null and orderName != ''">
+                order_name = #{orderName},
+            </if>
+            <if test="orderUser != null and orderUser != ''">
+                order_user = #{orderUser},
+            </if>
+            <if test="created != null">
+                created = #{created},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from boot_test.t_order where id = #{id}
+    </delete>
+
+</mapper>

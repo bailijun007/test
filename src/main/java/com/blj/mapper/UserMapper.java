@@ -1,4 +1,4 @@
-package com.blj.mapper.bootTest2;
+package com.blj.mapper;
 
 import com.blj.pojo.User;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * @author BaiLiJun  on 2019/12/30
  */
-public interface SecondUserMapper  {
+public interface UserMapper  {
 
 
     List<User> queryList(Map<String, Object> map);
@@ -38,5 +38,6 @@ public interface SecondUserMapper  {
     List<User> queryByTimeInterval(@Param("id") Long id, @Param("createDateBegin") String createDateBegin, @Param("createDateEnd") String createDateEnd, @Param("endLimit") int endLimit);
 
     List<User> findAll();
+
 
 }

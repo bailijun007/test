@@ -1,5 +1,5 @@
 
-package com.blj.mapper.bootTest1;
+package com.blj.mapper;
 
 import com.blj.pojo.PcAccount;
 import org.apache.ibatis.annotations.Mapper;
