@@ -1,4 +1,4 @@
-package isNumeric;
+package com.blj.isNumeric;
 
 import com.blj.util.CommonIntegerUtil;
 import org.junit.Test;

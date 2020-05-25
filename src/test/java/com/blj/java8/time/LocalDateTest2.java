@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -60,6 +61,24 @@ public class LocalDateTest2 {
         }else {
             System.out.println("---------");
         }
+    }
+
+    @Test
+    public void test(){
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyyMM");
+         LocalDateTime now = LocalDateTime.now();
+        System.out.println("now = " + now);
+        final String s = now.toString();
+        System.out.println("s = " + s);
+        final String[] split = s.split("T");
+        System.out.println(split[0]);
+
+         LocalDate localDate = now.toLocalDate();
+        final String format = localDate.format(formatter);
+        System.out.println("format = " + format);
+
+
+
     }
 
 }
