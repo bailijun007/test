@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TestGit {
     @Test
     public void test(){
-        System.out.println("当前git版本为1");
+        System.out.println("当前git版本为2");
     }
 
 }
