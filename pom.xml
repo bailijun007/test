@@ -115,6 +115,11 @@
             <artifactId>joda-time</artifactId>
         </dependency>
 
+        <!-- SpringBoot 拦截器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
 

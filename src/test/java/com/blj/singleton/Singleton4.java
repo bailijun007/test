@@ -8,7 +8,7 @@ package com.blj.singleton;
 public class Singleton4 {
 
    private static class SingletonHolder{
-       private  static final  Singleton4 INSTANCE=new Singleton4();
+       private  static final   Singleton4 INSTANCE=new Singleton4();
    }
 
    private Singleton4(){

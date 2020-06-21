@@ -15,6 +15,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
@@ -33,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 //@Import(value = {InstA.class})
 //@Import(value = {TestImportBeanDefinitionRegistrar.class}
 //@Import(value = {TestImportSelector.class})
+@EnableAspectJAutoProxy
 @SpringBootApplication
 @EnableScheduling
 @MapperScan("com.blj.mapper")
