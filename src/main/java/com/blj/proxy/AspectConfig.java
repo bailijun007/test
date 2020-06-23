@@ -1,6 +1,7 @@
 package com.blj.proxy;
 
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -50,6 +51,8 @@ public class AspectConfig {
 
         //执行并得到结果
         Object result = joinPoint.proceed();
+
+        log.info("返回值为：{}", JSON.toJSONString(result));
 
         long end = System.currentTimeMillis();
         log.info("消耗时间：{}毫秒", (end - start));

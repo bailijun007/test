@@ -72,7 +72,7 @@ public class Application implements ApplicationRunner {
         redisService.put("watch", "10", 20);
     }
 
-    @Value("${spring.profiles.active:}")
+    @Value("${spring.profiles.active}")
     private String profile;
 
     @PostConstruct
