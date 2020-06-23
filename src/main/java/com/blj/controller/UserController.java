@@ -103,7 +103,7 @@ public class UserController {
                     key = oe.getObjectName();
                 }
                 msg =oe.getDefaultMessage();
-                log.error("字段:{}发生错误，错误原因:{}", key,msg);
+                log.error("校验字段:{}发生错误，错误原因:{}", key,msg);
             }
 
             throw new TtException(ExceptionEnums.PARAM_ERROR);

@@ -1,11 +1,10 @@
 package com.blj.dto;
 
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -15,7 +14,7 @@ import java.io.Serializable;
 
 /**
  * UserInputDto
- *
+ * <p>
  * 校验规则参考：https://blog.csdn.net/qq920447939/article/details/80198438
  *
  * @author bailj@linkstec.com
@@ -29,14 +28,14 @@ public class UserInputDto implements Serializable {
 //    private  Long id;
 
     @NotNull(message = "name不能为空")
-    @Size(min = 4, max = 30, message = "字符串长度要求4到30之间。")
-    private  String name;
+    @Size(min = 4, max = 30, message = "name字符串长度要求4到30之间。")
+    private String name;
 
-    @Min(value = 1, message = "最小值为1") // 最小值为1
-    @Max(value = 100, message = "最大值为100") // 最大值88
+    //    @Min(value = 1, message = "最小值为1") // 最小值为1
+//    @Max(value = 100, message = "最大值为100") // 最大值88
+    @Range(min = 1, max = 100, message = "年龄范围为1至100岁之间") // 限定范围
     @NotNull // 不能为空
-    private  Integer age;
-
+    private Integer age;
 
 
 }
