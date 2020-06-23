@@ -1,6 +1,7 @@
 package com.blj.annotation;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * TestMyAnnotation
@@ -28,7 +29,7 @@ public class TestMyAnnotation {
 
                 // 获取该元素上指定类型的注解
                 MyAnnotation annotation = stuMethod.getAnnotation(MyAnnotation.class);
-                System.out.println("name="+annotation.name()+",age="+annotation.age()+",score="+annotation.score());
+                System.out.println("name="+annotation.name()+",age="+annotation.age()+",score="+ Arrays.toString(annotation.score()));
             }else {
                 System.out.println("Student类上没有配置MyAnnotation注解！");
             }
