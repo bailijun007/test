@@ -30,6 +30,12 @@
 
     </sql>
 
+    <insert id="save">
+        insert into t_user (name,age,password,create_date,create_time)
+        values
+       (#{name},#{age},#{password},#{createDate},#{createTime})
+    </insert>
+
     <select id="queryList" resultMap="User">
         select
         <include refid="Base_Column_List"/>
@@ -114,6 +120,10 @@
     </select>
     <select id="findAll" resultType="com.blj.pojo.User">
         select  *  from  t_user
+    </select>
+
+    <select id="queryByName" resultType="com.blj.pojo.User">
+         select  *  from  t_user where name=#{name}
     </select>
 
     <update id="dropTable">

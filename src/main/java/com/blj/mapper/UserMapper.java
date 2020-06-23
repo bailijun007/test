@@ -40,4 +40,7 @@ public interface UserMapper  {
     List<User> findAll();
 
 
+    void save(User user);
+
+    User queryByName(@Param("name") String name);
 }

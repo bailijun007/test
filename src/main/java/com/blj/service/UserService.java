@@ -14,4 +14,6 @@ public interface UserService {
     User queryById(Long id);
 
     PageResult<User> pageList(Integer pageNo, Integer pageSize, Integer age);
+
+    User saveUser(User user);
 }
