@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,8 +24,11 @@ import java.util.List;
 
 /**
  * @author BaiLiJun on 2020/1/7 0007
+ *
+ * 这里一定要在方法所在的controller类上加入@Validated注解，不然没有任何效果
+ *
  */
-
+@Validated
 @RestController
 @Slf4j
 @RequestMapping("/api/user")
@@ -41,7 +45,7 @@ public class UserController {
 
 
     @GetMapping(value = "/queryById")
-    public ResponseResult<User> queryById(@RequestParam("id")  Long id) {
+    public ResponseResult<User> queryById(@RequestParam("id") @NotNull(message = "id不能为空") Long id) {
 //        checkDtoParam(bindingResult);
 //        log.info("进入通过id查询用户接口，用户id为:{}", id);
 
@@ -93,14 +97,14 @@ public class UserController {
 
     /**
      * 新增用户接口
-     * controller应该要加上@Valid ,否则不会验证!
+     * controller应该要加上@Valid或@Validated ,否则不会验证!
      *
      * @param inputDto
      * @param bindingResult
      * @return
      */
     @PostMapping(value = "/addUser")
-    public User addUser(@Valid  UserInputDto inputDto, BindingResult bindingResult) {
+    public User addUser(@Validated UserInputDto inputDto, BindingResult bindingResult) {
         this.checkDtoParam(bindingResult);
         User user = new UserInputDtoConvert().convert(inputDto);
         User saveUser = userService.saveUser(user);
