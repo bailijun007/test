@@ -10,17 +10,21 @@ import com.blj.pojo.User;
 import com.blj.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * @author BaiLiJun on 2020/1/7 0007
  */
+
 @RestController
 @Slf4j
 @RequestMapping("/api/user")
@@ -37,8 +41,10 @@ public class UserController {
 
 
     @GetMapping(value = "/queryById")
-    public ResponseResult<User> queryById(@RequestParam("id") Long id) {
-        log.info("进入通过id查询用户接口，用户id为:{}", id);
+    public ResponseResult<User> queryById(@RequestParam("id")  Long id) {
+//        checkDtoParam(bindingResult);
+//        log.info("进入通过id查询用户接口，用户id为:{}", id);
+
         User user = userService.queryById(id);
 
         return new ResponseResult(user);
@@ -70,6 +76,21 @@ public class UserController {
     }
 
 
+    @DeleteMapping(value = "/deleteById/{id}")
+    public String deleteById(@PathVariable Long id ){
+        this.checkDeleteDtoParam(id);
+        userService.deleteById(id);
+
+        return "success";
+    }
+
+    private void checkDeleteDtoParam(Long id) {
+        if(id<0||null==id){
+            throw new TtException(ExceptionEnums.PARAM_ERROR);
+        }
+    }
+
+
     /**
      * 新增用户接口
      * controller应该要加上@Valid ,否则不会验证!
@@ -79,7 +100,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/addUser")
-    public User addUser(@Valid UserInputDto inputDto, BindingResult bindingResult) {
+    public User addUser(@Valid  UserInputDto inputDto, BindingResult bindingResult) {
         this.checkDtoParam(bindingResult);
         User user = new UserInputDtoConvert().convert(inputDto);
         User saveUser = userService.saveUser(user);

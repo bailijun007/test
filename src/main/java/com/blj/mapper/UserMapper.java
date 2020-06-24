@@ -43,4 +43,6 @@ public interface UserMapper  {
     void save(User user);
 
     User queryByName(@Param("name") String name);
+
+    void deleteById(@Param("id") Long id);
 }

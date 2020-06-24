@@ -36,6 +36,12 @@
        (#{name},#{age},#{password},#{createDate},#{createTime})
     </insert>
 
+    <delete id="deleteById">
+        delete from t_user
+        where id=#{id}
+
+    </delete>
+
     <select id="queryList" resultMap="User">
         select
         <include refid="Base_Column_List"/>

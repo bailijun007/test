@@ -4,6 +4,7 @@ package com.blj.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Max;
@@ -21,6 +22,7 @@ import java.io.Serializable;
  * @date 2020/6/23 14:56
  */
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInputDto implements Serializable {
