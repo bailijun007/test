@@ -9,6 +9,7 @@ import com.blj.dto.UserInputDtoConvert;
 import com.blj.pojo.User;
 import com.blj.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -45,7 +46,7 @@ public class UserController {
 
 
     @GetMapping(value = "/queryById")
-    public ResponseResult<User> queryById(@RequestParam("id") @NotNull(message = "id不能为空") Long id) {
+    public ResponseResult<User> queryById(@RequestParam("id")  @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1")  Long id) {
 //        checkDtoParam(bindingResult);
 //        log.info("进入通过id查询用户接口，用户id为:{}", id);
 
@@ -74,14 +75,13 @@ public class UserController {
 
         PageResult<User> pageResult = userService.pageList(pageNo, pageSize, age);
 
-
         ResponseResult result = new ResponseResult(pageResult);
         return result;
     }
 
 
     @DeleteMapping(value = "/deleteById/{id}")
-    public String deleteById(@PathVariable Long id ){
+    public String deleteById(@PathVariable @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1") Long id ){
         this.checkDeleteDtoParam(id);
         userService.deleteById(id);
 
