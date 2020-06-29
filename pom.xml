@@ -121,6 +121,37 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.redisson</groupId>-->
+            <!--<artifactId>redisson</artifactId>-->
+            <!--<version>3.9.1</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>cn.hutool</groupId>-->
+            <!--<artifactId>hutool-all</artifactId>-->
+            <!--<version>4.3.1</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>de.codecentric</groupId>-->
+            <!--<artifactId>spring-boot-admin-starter-server</artifactId>-->
+            <!--<version>2.0.4</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.alibaba</groupId>-->
+            <!--<artifactId>easyexcel</artifactId>-->
+            <!--<version>1.1.2-beta4</version>-->
+        <!--</dependency>-->
+
+       <!-- <dependency>
+            <groupId>com.swhy.bw.common.util</groupId>
+            <artifactId>common-util</artifactId>
+            <version>1.0.1</version>
+        </dependency>-->
+
     </dependencies>
 
 
