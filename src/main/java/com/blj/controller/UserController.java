@@ -112,6 +112,7 @@ public class UserController {
     }
 
 
+
     private void checkDtoParam(BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             List<ObjectError> allErrors = bindingResult.getAllErrors();
