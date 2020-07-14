@@ -1,5 +1,6 @@
 package com.blj.list;
 
+import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,6 +41,19 @@ public class ListTest {
         List<Object> list = Collections.emptyList();
         System.out.println("list = " + list);
     }
+
+    @Test
+    public void test4() {
+        List<Object> list = Collections.emptyList();
+        System.out.println("list = " + list);
+
+        List<User> list2=new ArrayList<>();
+        if (1==1){
+            System.out.println("list2 = " + list2);
+        }
+
+    }
+
 
     @Test
     public void test3() {
