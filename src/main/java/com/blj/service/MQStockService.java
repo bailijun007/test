@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author BaiLiJun  on 2019/12/27
  */
-@Service
+//@Service
 @Slf4j
 public class MQStockService {
     @Autowired

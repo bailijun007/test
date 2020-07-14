@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 第二个则用纯数据库模拟秒杀，出现超卖现象
  * @author BaiLiJun  on 2019/12/27
  */
-@Controller
+//@Controller
 @Slf4j
 public class SecController {
     @Autowired

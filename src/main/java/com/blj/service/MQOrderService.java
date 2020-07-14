@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * 订单的消费队列
  * @author BaiLiJun  on 2019/12/27
  */
-@Service
+//@Service
 @Slf4j
 public class MQOrderService {
     @Autowired
