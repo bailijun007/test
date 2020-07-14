@@ -132,6 +132,23 @@
          select  *  from  t_user where name=#{name}
     </select>
 
+    <select id="queryLikeByName" resultType="com.blj.pojo.User">
+        select  *  from  t_user
+        where
+        <if test="name != null and name != ''">
+            <bind name="name" value="'%' + name + '%'" />
+             name like #{name}
+        </if>
+    </select>
+
+    <select id="getUserMapByIds" resultMap="User">
+        select * from t_user
+         where id in
+        <foreach item="item" index="i" collection="idList" open="(" separator="," close=")">
+            #{idList[${i}]}
+        </foreach>
+    </select>
+
     <update id="dropTable">
          DROP TABLE IF EXISTS ${tableName}
     </update>

@@ -1,8 +1,8 @@
 package com.blj.mapper;
 
 import com.blj.pojo.User;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -45,4 +45,10 @@ public interface UserMapper  {
     User queryByName(@Param("name") String name);
 
     void deleteById(@Param("id") Long id);
+
+    List<User> queryLikeByName(@Param("name") String name);
+
+    @MapKey("id")
+    Map<Long,User> getUserMapByIds(@Param("idList") List<Long> userList);
+
 }

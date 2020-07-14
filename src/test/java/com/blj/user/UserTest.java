@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author BaiLiJun  on 2019/12/30
@@ -44,8 +45,8 @@ public class UserTest {
             User user = new User();
             user.setCreateDate(LocalDate.now())
                     .setCreateTime(LocalDateTime.now())
-                    .setName("李四" + i)
-                    .setAge(20 + i)
+                    .setName("赵六" + i)
+                    .setAge(24)
                     .setPassword("123456" + i);
             userList.add(user);
         }
@@ -216,6 +217,33 @@ public class UserTest {
         boolean numeric3 = CommonIntegerUtil.isNumeric("98877.54");
         System.out.println("numeric3 = " + numeric3);
 
+    }
+
+    // like 模糊查询
+    @Test
+    public void testLike(){
+        String name="赵";
+        List<User> userList =userMapper.queryLikeByName(name);
+        for (User user : userList) {
+            System.out.println("user = " + user);
+        }
+    }
+
+
+    // Mybatis @MapKey注解的使用
+    @Test
+    public void testMapKey(){
+        String name="赵";
+        List<User> userList =userMapper.queryLikeByName(name);
+        List<Long> ids = userList.stream().map(User::getId).collect(Collectors.toList());
+        Map<Long, User> map = userMapper.getUserMapByIds(ids);
+        for (Long key :map.keySet()){
+           if (key==750){
+               User user = map.get(key);
+               System.out.println("user = " + user);
+               break;
+           }
+        }
     }
 
 }
