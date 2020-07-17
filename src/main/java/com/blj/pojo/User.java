@@ -37,6 +37,8 @@ public class User implements Serializable {
 //    @JsonIgnore
     private String password;
 
+    //对于转换前端传过来的时间，@JsonFormat只适合 Content-Type 为application/json的请求，
+    // 如果是表单请求，请采用@DateTimeFormat
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 
