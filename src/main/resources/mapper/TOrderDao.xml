@@ -65,6 +65,9 @@
             <if test="created != null">
                 created = #{created},
             </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
         </set>
         where id = #{id}
     </update>
