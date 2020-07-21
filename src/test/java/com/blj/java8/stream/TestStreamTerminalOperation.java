@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.List;
  * @author BaiLiJun  on 2020/3/17
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class TestStreamTerminalOperation {
     @Autowired
