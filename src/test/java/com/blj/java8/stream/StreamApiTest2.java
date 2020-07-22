@@ -1,16 +1,14 @@
 package com.blj.java8.stream;
 
 import com.blj.pojo.User;
+import org.apache.logging.log4j.util.Strings;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -64,11 +62,26 @@ public class StreamApiTest2 {
     }
 
 
+    // 去重
     @Test
     public void testDistinct() {
-        list.stream().filter(U -> U.getAge() > 25)
+        list.stream().filter(u -> u.getAge() > 25)
                 .distinct()
                 .forEach(System.out::println);
+    }
+
+    // 过滤
+    @Test
+    public void testFilter() {
+        List<User> list2 = new ArrayList<>();
+        list2.add(new User(6L, "", 28, "123456"));
+        list2.add(new User(7L, "lisi", 21, "1234567"));
+        // Objects::nonNull 过滤掉不为空的对象
+        list2.stream().filter(Objects::nonNull).forEach(System.out::println);
+
+        // Strings::isNotBlank 过滤掉不为空的字符串
+        list2.stream().map(User::getName).filter(Strings::isNotBlank).forEach(System.out::println);
+
     }
 
 
@@ -116,16 +129,16 @@ public class StreamApiTest2 {
     @Test
     public void test2() {
 
-        List<String> list1 = Arrays.asList( "cc","aa", "bb", "dd");
+        List<String> list1 = Arrays.asList("cc", "aa", "bb", "dd");
 
         list1.stream().sorted().forEach(System.out::println);
 
         System.out.println("----------------------");
 
-        list.stream().sorted((u1,u2)->{
-            if (u1.getAge().equals(u2.getAge())){
+        list.stream().sorted((u1, u2) -> {
+            if (u1.getAge().equals(u2.getAge())) {
                 return u1.getName().compareTo(u2.getName());
-            }else {
+            } else {
                 return u1.getAge().compareTo(u2.getAge());
             }
         }).forEach(System.out::println);
