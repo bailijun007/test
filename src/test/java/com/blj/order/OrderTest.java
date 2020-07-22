@@ -71,15 +71,15 @@ public class OrderTest {
     }
 
     /**
-     * 数据库类型如果是timestamp类型 ，对应Java可以用java.sql.Timestamp类型
+     * 数据库类型如果是timestamp类型 ，对应Java可以用LocalDateTime类型
      *
      */
     @Test
     public void testTimestamp(){
         TOrder order = new TOrder();
-        Timestamp timestamp=Timestamp.valueOf(LocalDateTime.now());
+//        Timestamp timestamp=Timestamp.valueOf(LocalDateTime.now());
         order.setOrderUser("赵六");
-        order.setUpdateTime(timestamp);
+        order.setUpdateTime(LocalDateTime.now());
         order.setId(289);
         int update = tOrderDao.update(order);
         if(update==1){
@@ -87,7 +87,14 @@ public class OrderTest {
         }else {
             System.out.println("修改失败");
         }
+    }
 
+
+    @Test
+    public void testTimestampByquery(){
+        TOrder order = tOrderDao.queryById(289);
+        LocalDateTime updateTime = order.getUpdateTime();
+        System.out.println("updateTime = " + updateTime);
     }
 
 }

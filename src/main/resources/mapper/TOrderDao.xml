@@ -7,12 +7,13 @@
         <result property="orderName" column="order_name" jdbcType="VARCHAR"/>
         <result property="orderUser" column="order_user" jdbcType="VARCHAR"/>
         <result property="created" column="created" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="TOrderMap">
         select
-          id, order_name, order_user, created
+          id, order_name, order_user, created,update_time
         from boot_test.t_order
         where id = #{id}
     </select>
