@@ -46,7 +46,7 @@ public class MapStreamTest {
     @Test
     public void listToMapByNameValue(){
         // value 为对象中的属性
-        Map<Long, String> map = list.stream().collect(Collectors.toMap(User::getId, User::getName));
+        Map<Long, String> map = list.stream().filter(u->u.getId()!=null).collect(Collectors.toMap(User::getId, User::getName));
         map.forEach((key, value) -> {
             System.out.println("key: " + key + "    value: " + value);
         });
@@ -55,7 +55,7 @@ public class MapStreamTest {
     @Test
     public void listToConcurrentMappByNameValue(){
         // value 为对象中的属性
-        Map<Long, String> map = list.stream().collect(Collectors.toConcurrentMap(User::getId, User::getName));
+        Map<Long, String> map = list.stream().filter(u->u.getId()!=null).collect(Collectors.toConcurrentMap(User::getId, User::getName));
         map.forEach((key, value) -> {
             System.out.println("key: " + key + "    value: " + value);
         });
