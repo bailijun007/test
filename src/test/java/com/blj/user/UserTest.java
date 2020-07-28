@@ -41,11 +41,11 @@ public class UserTest {
     @Test
     public void batchSave() {
         List<User> userList = new ArrayList<>();
-        for (int i = 0; i < 200; i++) {
+        for (int i = 1; i < 100; i++) {
             User user = new User();
             user.setCreateDate(LocalDate.now())
                     .setCreateTime(LocalDateTime.now())
-                    .setName("赵六" + i)
+                    .setName("张" + i+"狗")
                     .setAge(24)
                     .setPassword("123456" + i);
             userList.add(user);
