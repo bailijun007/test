@@ -3,6 +3,8 @@
 
 <mapper namespace="com.blj.mapper.UserMapper">
 
+    <cache eviction="LRU" flushInterval="100000" readOnly="true" size="1024"></cache>
+
     <resultMap type="com.blj.pojo.User" id="User">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
