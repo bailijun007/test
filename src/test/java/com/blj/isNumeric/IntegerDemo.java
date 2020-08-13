@@ -27,4 +27,16 @@ public class IntegerDemo {
 
     }
 
+    // 面试题：Integer.MAX_VALUE +1 是多少？
+    // 答案：是Integer.MIN_VALUE
+    @Test
+    public void  test(){
+        int maxValue = Integer.MAX_VALUE;
+        System.out.println("maxValue = " + maxValue);
+        int i = maxValue + 1;
+        System.out.println("i = " + i);
+
+        System.out.println("minValue = "+Integer.MIN_VALUE);
+    }
+
 }

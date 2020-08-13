@@ -35,7 +35,7 @@ public class UserInputDto implements Serializable {
     private String name;
 
     @Min(value = 1, message = "最小值为1") // 最小值为1
-    @Max(value = 100, message = "最大值为100") // 最大值88
+    @Max(value = 100, message = "年龄最大值为100") // 最大值88
 //    @Range(min = 1, max = 100, message = "年龄范围为1至100岁之间") // 限定范围
     @NotNull // 不能为空
     private Integer age;
