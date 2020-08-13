@@ -37,7 +37,7 @@ public class CommonExceptionAdvice {
                 .body(result);
         result.setTimestamp(System.currentTimeMillis());
         result.setCode(code);
-        String message = null;
+        String message = "参数错误！";
         if (exception instanceof ConstraintViolationException) {
             ConstraintViolationException exs = (ConstraintViolationException) exception;
             Set<ConstraintViolation<?>> violations = exs.getConstraintViolations();
@@ -48,10 +48,7 @@ public class CommonExceptionAdvice {
                 }
             }
             result.setMessage(message);
-        }else {
-            message ="参数错误！";
         }
-
         return responseEntity;
     }
 
