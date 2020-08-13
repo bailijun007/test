@@ -1,17 +1,18 @@
 package com.blj.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * UserInputDto
@@ -30,7 +31,7 @@ public class UserInputDto implements Serializable {
 //    private  Long id;
 
     @NotNull(message = "name不能为空")
-    @Size(min = 4, max = 30, message = "name字符串长度要求4到30之间。")
+    @Length(min = 4, max = 30, message = "name字符串长度要求4到30之间")
     private String name;
 
     @Min(value = 1, message = "最小值为1") // 最小值为1

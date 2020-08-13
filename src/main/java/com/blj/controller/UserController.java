@@ -103,8 +103,8 @@ public class UserController {
      * @param bindingResult
      * @return
      */
-    @PostMapping(value = "/addUser")
-    public User addUser(@Validated UserInputDto inputDto, BindingResult bindingResult) {
+    @GetMapping(value = "/addUser")
+    public User addUser(@Valid UserInputDto inputDto, BindingResult bindingResult) {
         this.checkDtoParam(bindingResult);
         User user = new UserInputDtoConvert().convert(inputDto);
         User saveUser = userService.saveUser(user);
@@ -118,7 +118,7 @@ public class UserController {
             List<ObjectError> allErrors = bindingResult.getAllErrors();
             for (ObjectError oe : allErrors) {
                 String key = null;
-                String msg = null;
+                String msg = "参数错误！";
                 // 字段错误
                 if (oe instanceof FieldError) {
                     FieldError fe = (FieldError) oe;
@@ -131,7 +131,6 @@ public class UserController {
                 msg =oe.getDefaultMessage();
                 log.error("校验字段:{}发生错误，错误原因:{}", key,msg);
             }
-
             throw new TtException(ExceptionEnums.PARAM_ERROR);
         }
     }
