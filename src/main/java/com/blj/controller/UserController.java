@@ -51,7 +51,6 @@ public class UserController {
 //        log.info("进入通过id查询用户接口，用户id为:{}", id);
 
         User user = userService.queryById(id);
-
         return new ResponseResult(user);
     }
 
