@@ -89,8 +89,12 @@ public class UserController {
     public String deleteById(@PathVariable @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1") Long id ){
         this.checkDeleteDtoParam(id);
         userService.deleteById(id);
-
         return "success";
+    }
+
+    @GetMapping(value = "/exit")
+    public void exit(){
+        System.exit(1);
     }
 
     private void checkDeleteDtoParam(Long id) {
