@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class TtException extends RuntimeException{
+public class TtException extends RuntimeException {
 
     private ExceptionEnums exceptionEnums;
 

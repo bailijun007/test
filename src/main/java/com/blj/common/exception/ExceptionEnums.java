@@ -14,8 +14,10 @@ public enum ExceptionEnums {
 
     SUCCESS(0, "success"),
 
+    DEFAULT_ERROR(100100,"服务器忙！"),
     USER_NOT_BE_FIND(100101, "用户不存在"),
     PARAM_ERROR(100102, "参数错误！"),
+
 
     ;
     private int code;

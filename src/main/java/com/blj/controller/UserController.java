@@ -1,5 +1,6 @@
 package com.blj.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.blj.common.exception.ExceptionEnums;
 import com.blj.common.exception.TtException;
 import com.blj.common.util.PageResult;
@@ -26,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author BaiLiJun on 2020/1/7 0007
@@ -129,8 +131,16 @@ public class UserController {
         while((str = br.readLine()) != null){
             wholeStr += str;
         }
-        System.out.println(wholeStr);
-        return wholeStr;
+        log.info("HttpServletRequest中读取HTTP请求的body:{}",wholeStr);
+
+        Map map = JSON.parseObject(wholeStr, Map.class);
+        for (Object key : map.keySet()){
+            log.info("key为：{},值为:{}",key,map.get(key));
+        }
+        String id = request.getParameter("id");
+        map.put("id",id);
+
+        return JSON.toJSONString(map);
     }
 
 
