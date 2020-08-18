@@ -66,15 +66,15 @@ public class UserServiceImpl implements UserService {
         user.setCreateDate(LocalDate.now())
                 .setCreateTime(LocalDateTime.now());
         userMapper.save(user);
-        User userDto=userMapper.queryByName(user.getName());
+        User userDto = userMapper.queryByName(user.getName());
         return userDto;
     }
 
     @Override
     public void deleteById(Long id) {
-       //判断该id是否存在
+        //判断该id是否存在
         User user = userMapper.queryById(id);
-        if (null==user){
+        if (null == user) {
             throw new TtException(ExceptionEnums.USER_NOT_BE_FIND);
         }
         userMapper.deleteById(id);
