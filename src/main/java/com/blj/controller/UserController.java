@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -26,14 +27,15 @@ import javax.validation.constraints.NotNull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author BaiLiJun on 2020/1/7 0007
- *
+ * <p>
  * 这里一定要在方法所在的controller类上加入@Validated注解，不然没有任何效果
- *
  */
 @Validated
 @RestController
@@ -52,7 +54,7 @@ public class UserController {
 
 
     @GetMapping(value = "/queryById")
-    public ResponseResult<User> queryById(@RequestParam("id")  @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1")  Long id) {
+    public ResponseResult<User> queryById(@RequestParam("id") @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1") Long id) {
 //        checkDtoParam(bindingResult);
 //        log.info("进入通过id查询用户接口，用户id为:{}", id);
 
@@ -86,19 +88,19 @@ public class UserController {
 
 
     @DeleteMapping(value = "/deleteById/{id}")
-    public String deleteById(@PathVariable @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1") Long id ){
+    public String deleteById(@PathVariable @NotNull(message = "id不能为空") @Min(value = 1, message = "id最小值为1") Long id) {
         this.checkDeleteDtoParam(id);
         userService.deleteById(id);
         return "success";
     }
 
     @GetMapping(value = "/exit")
-    public void exit(){
+    public void exit() {
         System.exit(1);
     }
 
     private void checkDeleteDtoParam(Long id) {
-        if(id<0||null==id){
+        if (id < 0 || null == id) {
             throw new TtException(ExceptionEnums.PARAM_ERROR);
         }
     }
@@ -123,6 +125,7 @@ public class UserController {
     /**
      * servlet 获取 body Json数据（post 请求）
      * https://blog.csdn.net/zxygww/article/details/47045055
+     *
      * @param request
      * @return
      * @throws IOException
@@ -132,25 +135,35 @@ public class UserController {
     public String postTest(HttpServletRequest request) throws IOException {
         BufferedReader br = request.getReader();
         String str, wholeStr = "";
-        while((str = br.readLine()) != null){
+        while ((str = br.readLine()) != null) {
             wholeStr += str;
         }
-        log.info("HttpServletRequest中读取HTTP请求的body:{}",wholeStr);
+        log.info("==> HttpServletRequest中读取HTTP请求的body:{}", wholeStr);
 
-        Map map = JSON.parseObject(wholeStr, Map.class);
-        for (Object key : map.keySet()){
-            log.info("key为：{},值为:{}",key,map.get(key));
+        Map map =new HashMap();
+        if (!StringUtils.isEmpty(wholeStr)){
+             map = JSON.parseObject(wholeStr, Map.class);
+            for (Object key : map.keySet()) {
+                log.info("==> HttpServletRequest 读取到字段为：{},字段值为：{}", key, map.get(key));
+            }
         }
-        String id = request.getParameter("id");
-        map.put("id",id);
+
+        String id = request.getParameter("name");
+        Map<String, String[]> parmas = request.getParameterMap();
+        Iterator<Map.Entry<String, String[]>> iterator = parmas.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            String key = entry.getKey();
+            String[] value = entry.getValue();
+            map.put(key, value[0]);
+        }
 
         return JSON.toJSONString(map);
     }
 
 
-
     private void checkDtoParam(BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             List<ObjectError> allErrors = bindingResult.getAllErrors();
             for (ObjectError oe : allErrors) {
                 String key = null;
@@ -164,8 +177,8 @@ public class UserController {
                     // 非字段错误 获取验证对象名称
                     key = oe.getObjectName();
                 }
-                msg =oe.getDefaultMessage();
-                log.error("校验字段:{}发生错误，错误原因:{}", key,msg);
+                msg = oe.getDefaultMessage();
+                log.error("校验字段:{}发生错误，错误原因:{}", key, msg);
             }
             throw new TtException(ExceptionEnums.PARAM_ERROR);
         }
