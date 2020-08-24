@@ -148,7 +148,7 @@ public class UserController {
             }
         }
 
-        String id = request.getParameter("name");
+        String id = request.getParameter("id");
         Map<String, String[]> parmas = request.getParameterMap();
         Iterator<Map.Entry<String, String[]>> iterator = parmas.entrySet().iterator();
         while (iterator.hasNext()) {
