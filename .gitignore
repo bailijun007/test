@@ -3,17 +3,7 @@
 # Compiled class file
 *.class
 
-*.imi
-
-compiler.xml
-
-encodings.xml
-
-jarRepositories.xml
-
-misc.xml
-
-Project_Default.xml
+.idea
 
 # Log file
 *.log
