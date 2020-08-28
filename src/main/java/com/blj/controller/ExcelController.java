@@ -103,7 +103,7 @@ public class ExcelController {
             DownloadData data = new DownloadData();
             data.setString(user.getName());
             data.setDate(new Date());
-            data.setDoubleData(user.getAge()+0.1);
+            data.setDoubleData(user.getAge() + 0.1);
             list.add(data);
         }
 
