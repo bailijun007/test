@@ -162,6 +162,17 @@ public class UserController {
     }
 
 
+    /*
+    * 测试@Transactional 是否会报错回滚
+    *
+    * 当update 更新数据库成功后，在一个事务还没执行完逻辑后，报错了是否会回滚？
+    *  会回滚 ，更新数据库的数据会恢复
+     */
+    @GetMapping(value = "/testTransactional")
+    public void testTransactional(){
+        userService.testTransactional();
+    }
+
     private void checkDtoParam(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<ObjectError> allErrors = bindingResult.getAllErrors();

@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
         return list;
     }
 
+
     @Override
     public User queryById(Long id) {
 
@@ -79,4 +80,32 @@ public class UserServiceImpl implements UserService {
         }
         userMapper.deleteById(id);
     }
+
+
+    /**
+     * 测试@Transactional注解是否能回滚
+     *
+     */
+    @Override
+    public void testTransactional(){
+        User user = userMapper.queryById(3L);
+        LocalDate createDate = user.getCreateDate();
+        if (createDate!=null){
+            user.setCreateDate(LocalDate.now());
+            userMapper.updateById(user);
+        }
+
+        String password = user.getPassword();
+
+       try {
+           // 故意报错
+           String substring = password.substring(0, 1);
+           System.out.println("substring = " + substring);
+       }catch (Exception e){
+           throw new TtException(ExceptionEnums.DEFAULT_ERROR);
+       }
+
+
+    }
+
 }

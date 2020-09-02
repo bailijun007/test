@@ -94,6 +94,11 @@
         </foreach>
     </update>
 
+    <update id="updateById" parameterType="com.blj.pojo.User">
+     UPDATE t_user set `name`=#{user.name},age=#{user.age},password=#{user.password},create_date=#{user.createDate},create_time=#{user.createTime}
+     where id=#{user.id}
+    </update>
+
     <update id="batchUpdateWithTwoParam">
         <foreach collection="userList" item="item" index="index" open="" close="" separator=";">
             UPDATE t_user
@@ -166,5 +171,6 @@
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17329 DEFAULT CHARSET=utf8
 </update>
+
 
 </mapper>
