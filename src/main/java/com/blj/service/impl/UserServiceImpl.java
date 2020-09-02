@@ -99,6 +99,7 @@ public class UserServiceImpl implements UserService {
 
        try {
            // 故意报错
+           password=null;
            String substring = password.substring(0, 1);
            System.out.println("substring = " + substring);
        }catch (Exception e){
