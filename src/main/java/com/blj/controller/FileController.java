@@ -37,11 +37,29 @@ public class FileController {
         System.out.println(fileRealName + "-->" + size);
 
         // 定义文件的存储路径
-        String path = FileController.class.getResource("/").getPath() + fileRealName;
+//        String path = FileController.class.getResource("/").getPath() + fileRealName;
 
+        File directory =null;
+        String resultFileUrl=null;
+        try {
+             directory = new File("");
+            //项目根路径
+            String rootFile = directory.getCanonicalPath();
+            log.info("项目根路径:{}",rootFile);
+
+            //服务器文件路径
+//            resultFileUrl = rootFile + File.separator + "latest" + File.separator + fileRealName;
+
+            //本地文件路径
+            resultFileUrl = rootFile + File.separator + "latest" + File.separator + fileRealName;
+            log.info("resultFileUrl:{}",resultFileUrl);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // 新建本地文件
-        File dest = new File(path);
+        File dest = new File(resultFileUrl);
         //判断文件父目录是否存在
         if (!dest.getParentFile().exists()) {
             // 创建父目录
@@ -56,11 +74,11 @@ public class FileController {
 //            recourcesMapper.save(fileName,groupName,owner,fileMessage,path,df.format(new Date()),0);
             //保存文件
             file.transferTo(dest);
-            log.info("资源上传成功,上传资源的路径地址在：{}", path);
+            log.info("资源上传成功,上传资源的路径地址在：{}", resultFileUrl);
             return "上传成功";
         } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
-            log.info("资源上传失败");
+            log.error("资源上传失败");
         }
 
         return "上传失败";

@@ -31,10 +31,12 @@ public class CommonExceptionAdvice {
 
     // 自定义抛出异常全局处理
     @ExceptionHandler(TtException.class)
-    public ResponseEntity<ExceptionResult> exceptionHandle(TtException e) {
-        //   ExceptionEnums enums = e.getExceptionEnums();
-        ResponseEntity<ExceptionResult> responseEntity = ResponseEntity.status(e.getExceptionEnums().getCode()).body(new ExceptionResult(e.getExceptionEnums()));
-        return responseEntity;
+    public ExceptionResult exceptionHandle(TtException e) {
+        ExceptionResult result=new ExceptionResult();
+        result.setTimestamp(System.currentTimeMillis());
+        result.setCode(e.getExceptionEnums().getCode());
+        result.setMessage(e.getExceptionEnums().getMsg());
+        return result;
     }
 
 
@@ -48,11 +50,9 @@ public class CommonExceptionAdvice {
 
     // 校验异常全局处理
     @ExceptionHandler({ValidationException.class})
-    public ResponseEntity<ExceptionResult> handleException(ValidationException exception) {
+    public ExceptionResult handleException(ValidationException exception) {
         ExceptionResult result = new ExceptionResult();
         int code = 100102;
-        ResponseEntity<ExceptionResult> responseEntity = ResponseEntity.status(code)
-                .body(result);
         result.setTimestamp(System.currentTimeMillis());
         result.setCode(code);
         String message = "参数错误！";
@@ -67,7 +67,7 @@ public class CommonExceptionAdvice {
             }
             result.setMessage(message);
         }
-        return responseEntity;
+        return result;
     }
 
 }

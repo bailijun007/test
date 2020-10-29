@@ -32,4 +32,12 @@ public class CommonIntegerUtil {
         return true;
     }
 
+    public static void main(String[] args) {
+        boolean numeric = isNumeric(null);
+        System.out.println("numeric = " + numeric);
+
+        Long s= Long.MAX_VALUE/23456678;
+        System.out.println("s = " + s);
+
+    }
 }
