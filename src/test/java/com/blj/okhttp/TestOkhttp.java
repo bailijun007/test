@@ -44,27 +44,30 @@ public class TestOkhttp {
         Request request = new Request.Builder().url("http://10.69.18.95:8106/dingApproval/getApprovalInstanceDetails").post(formBody).build();
         Call call = okHttpClient.newCall(request);
        // 同步请求
-        try {
-            Response response = call.execute();
-            ResponseBody responseBody = response.body();
-            String string = responseBody.string();
-            System.out.println("string = " + string);
-            return string;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Response response = call.execute();
+//            ResponseBody responseBody = response.body();
+//            String string = responseBody.string();
+//            System.out.println("string = " + string);
+//            return string;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
         // 异步请求
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                //请求失败的处理
-//            }
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//            }
-//        });
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //请求失败的处理
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                ResponseBody responseBody = response.body();
+                String string = responseBody.string();
+                System.out.println("string = " + string);
+            }
+        });
 
         return null;
     }
