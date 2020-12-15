@@ -45,6 +45,9 @@ public class User implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
+
+    private  Boolean deleteFlag;
+
     public User(Long id, String name, Integer age, String password) {
         this.id = id;
         this.name = name;
@@ -58,6 +61,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+
+
+    public User(String name, Integer age, String password,Boolean deleteFlag) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+        this.deleteFlag = deleteFlag;
+    }
     public User() {}
     public User(Long id) {
         this.id = id;
