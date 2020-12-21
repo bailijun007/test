@@ -7,6 +7,7 @@ import com.blj.common.util.PageResult;
 import com.blj.common.util.ResponseResult;
 import com.blj.dto.UserInputDto;
 import com.blj.dto.UserInputDtoConvert;
+import com.blj.pojo.DingMsgVo;
 import com.blj.pojo.User;
 import com.blj.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -172,6 +173,13 @@ public class UserController {
     public void testTransactional(){
         userService.testTransactional();
     }
+
+    @PostMapping("/sendMsgByEmail")
+    public Boolean sendMsgByEmail(String email, DingMsgVo dingMsgVo){
+        log.info("==> email:{},dingMsgVo:{}",email,dingMsgVo);
+        return false;
+    }
+
 
     private void checkDtoParam(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

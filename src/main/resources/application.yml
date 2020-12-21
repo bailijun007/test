@@ -1,0 +1,108 @@
+debug: false
+ehr:
+  id_generator:
+    env:  dev
+    id: ehr
+  message_url_prefix: http://dev.pivotweb.hellobike.cn/#/
+  db_version_check: false
+  web_base_url: http://dev.pivotman.hellobike.cn/
+  moka_api_base_url: https://api-staging003.mokahr.com/
+  moka_api_key: w51DMOtcXJTgD5KA6StjsiXIKth5MdQr
+  ding_talk: classpath:dingTalk.yml
+  soa_json: classpath:Client.json
+  logo_path: classpath:img/logo.jpeg
+  entry_image_path: https://m.hellobike.com/resource/pivot/pivot_static/IUHGdS2H1OKIff1ZB4h2t.png
+  warning_enable: false
+  composite-switch: dev
+  reimburse_permission_enable: false
+  reimburse_white_list: 10056,10074,10107,10644
+  beisen_api_base_url: http://api.beisenapp.com/
+  beisen_api_key: cdc1c058ec3d4cfd93de3a44af39b898
+  beisen_api_id: 109411
+  employeePicReceive: wangshangli05971@hellobike.com
+  background:
+    account: 6f7716b9-86c0-4b29-b76f-07e7eca63105
+    key: 2ce8d0fc0f431a237b15dad6364023b9
+    url: http://openapi.beyandtech.com/gate-way/api
+  performance:
+    ding_talk:
+      env: dev
+  ctrip:
+    appKey: obk_Hellobike
+    appSecurity: obk_Hellobike
+    corpId: Hellobike
+    account: 368906
+    subAccountName: Hellobike_提前审批
+    secret: Hellobike_Y8DFpDWQ
+    pivotFileUrl: http://10.111.75.107:8099/file/oss/upload
+  beisen:
+    alg: RS256
+    iss: pivotweb.hellobike.cn
+    aud: 109411
+    app_id: 100
+    public_key: |+
+      -----BEGIN PUBLIC KEY-----
+      MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEApRbczFupaLeebd4jzRxS
+      QSUl8O8L7QWuBbdQ5vrW4myxO7REVXV/ZoOLF+minW/J3rL3yj/PZf7n90ybX1Fe
+      xDTSm53sHqfMZOcvJ7JqL/qDW6kXPQCpEQ6VJRo6U0eBDuolJpfVhCmg4QVcp7Wj
+      tmEE++fGFqsr7FaBYswcvJW9oVr73GMt0Pa9iIGV2tR4xyNikt5LaFxX+CzhUzCI
+      cmiXC4ANtkfQOkPKd5kqvk/3osWqrHsHdbFWf4TY5An4BSXjwH4NjlLtj9E+ZKHS
+      An8kYGT34wtIiZ05XGjnXrLAu+1ucOQg4Byt6jGH8C/9o1LGZU+Aw3KveGZ0D4aE
+      YQIBAw==
+      -----END PUBLIC KEY-----
+    private_key: |+
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEogIBAAKCAQEApRbczFupaLeebd4jzRxSQSUl8O8L7QWuBbdQ5vrW4myxO7RE
+      VXV/ZoOLF+minW/J3rL3yj/PZf7n90ybX1FexDTSm53sHqfMZOcvJ7JqL/qDW6kX
+      PQCpEQ6VJRo6U0eBDuolJpfVhCmg4QVcp7WjtmEE++fGFqsr7FaBYswcvJW9oVr7
+      3GMt0Pa9iIGV2tR4xyNikt5LaFxX+CzhUzCIcmiXC4ANtkfQOkPKd5kqvk/3osWq
+      rHsHdbFWf4TY5An4BSXjwH4NjlLtj9E+ZKHSAn8kYGT34wtIiZ05XGjnXrLAu+1u
+      cOQg4Byt6jGH8C/9o1LGZU+Aw3KveGZ0D4aEYQIBAwKCAQACwGGL8HYGAw9ww7PL
+      86wJnnxdnZWIN4+zS5auhC4/gc/A/rzfSn3bTv4NMtPG4/8ZC4QhPMv9bupEHyS5
+      Dif6vJ0cMZC8PoesWS+4INcaZk79QtF0N3pI0U9JJtZOMCAEg+cE6O45q1xIBFsk
+      7bGpcIziEKmzk+tmEoIoC+9piwBz7U2lwwbzHYZLRdOwf95SjgXEpGYRzfryeQYr
+      BLA0lvxzDxEnVgVrwpVhBFtFBHbGR3AGmWupZ2VoAYABxMcDQplUsHisls+AZfhZ
+      J7BTK3df38OpV6KodFiE6m0PxRyQGkYPwpCjjYbcSFimtpz9ceHpzz+esvtvwCQI
+      NAx/AoGBAPgk5OKAiDjrAKjRXjGb1ovcUwGm7BchqPlOJgvh2iNzTmNk68X3JQ68
+      jLFzK3A3DnWUTg+aF9R5rXmnTUvDPoczyIcfvJBtjdBQJWUUSsNvNPzQ1lz57RLh
+      PpjxOapqojJjXjrBns/WAnh14SIWpmlQArM8rdwu9sl+r/XTNzNlAoGBAKpQ1+aC
+      JVPrCpsSxcbhBdGRhwbVakgabI3VqWNcPRirtwivDEKG+Xw8HBZHaFZaNauVuVmG
+      bfdHyBh33Yy2rMwNwWzHZTStbHsnxaRrCbsVGi0XHL84lBYtGeFEPa1B3dySZsf9
+      q2q07pnTW57GvMjsnyBcDrtiiPfIrgxQHGNNAoGBAKVt7exVsCXyAHCLlCESjwfo
+      N1ZvSA9rxfuJbrKWkWz3iZeYnS6kw18oXcuiHPV6CaO4NApmuo2mc6ZviN0s1Foi
+      ha9qfbWeXorgGO4Nhyz0zf3gjuimngyWKbtLe8bxwXbs6XyBFIqOrFBOlha5xEY1
+      VyIoc+gfTzD/H/k3eiJDAoGAcYs6mawY4pyxvLcuhJYD4QuvWeOcMBGds+PGQj1+
+      EHJ6BcoILFn7qCgSuYTwOZF5HQ57kQRJT4UwEE/pCHnIiAkrndpDeHOdp2/ZGEdb
+      0g4Rc2S91NBiuXNmli1+c4E+kwxEhVPHnHifETeSadnTMJ2/augJ0kGwpTB0CDVo
+      QjMCgYEAyTq4gJIfVa9aUIOHDeWHR/mF5hCZJvSsoLrpBpNWPKxXZ4h5xYqj15bk
+      +Im/Rxh+j+HhKcJFYnCgF/ahiftQo7hLwM/FHXXTtnH4BIwzOXJrlwD9NZLqg0F0
+      t1RB34mlU6t8TNUrUhPDGjdE9gi9LXjwktbLEzdeIwWkDhMK6Uo=
+      -----END RSA PRIVATE KEY-----
+    token_url: https://openapi.italent.cn/OAuth/Token
+    token_app_id: 907
+    token_secret: 12dfd1f0217349f58c4e4df32d96ad4e
+    token_tenant_id: 109411
+    token_grant_type: client_credentials
+    pending_count_url: http://openapi.italent.cn/customerservice/hellobike/process/GetAllProcessDefinitionCount
+    pending_task_url: http://openapi.italent.cn/customerservice/hellobike/process/getUserUnFinishedApprovalTasks
+    approval_task_url: http://openapi.italent.cn/customerservice/hellobike/process/getUserFinishedApprovalTasks
+    apply_task_url: http://openapi.italent.cn/customerservice/hellobike/process/getUserApplyTasks
+    process_type_url: http://openapi.italent.cn/customerservice/hellobike/process/getAllProcessDefinitionType
+
+
+  meike:
+    entCode: EC1911081IH351XE
+    secretKey: bIWMFqe2duciCHByc5tc
+    domain: https://uat.maycur.com
+    ssoUrl: /api/web/auth/sso
+    approvalsUrl: /api/web/report/approvals
+    approvalsHistoryUrl: /api/web/report/approvals/history
+  yy:
+    domain: https://dev-yonyou-web.hellobike.cn
+    approvalsUrl: /yuncai/ycrest/basedoc/approve/todo/pageQuery
+    approvedUrl: /yuncai/ycrest/basedoc/approve/done/pageQuery
+    signUrl: http://10.111.70.220:22277/openapi/signurl
+    tenantId: EC1911081IH351XE
+
+  workflow_detail_url: http://dev-common.hellobike.cn/#/platform/workflow/workspace/review?
+  mobile_workflow_detail_url: http://m.hellobike.com/AppPlatformAdminH5/dev/latest/index.html#/workflow/review?
