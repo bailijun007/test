@@ -1,5 +1,9 @@
 package com.blj;
 
+import com.blj.pojo.InstA;
+import com.blj.pojo.TestImportBeanDefinitionRegistrar;
+import com.blj.pojo.TestImportSelector;
+import com.blj.pojo.User;
 import com.blj.redis.pubsub.test.TestPubDemo;
 import com.blj.service.RedisService;
 import org.slf4j.Logger;
@@ -11,7 +15,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -26,6 +31,10 @@ import java.util.concurrent.TimeUnit;
  *
  * @author BaiLiJun  on 2019/12/20
  */
+//@Import(value = {InstA.class})
+//@Import(value = {TestImportBeanDefinitionRegistrar.class}
+//@Import(value = {TestImportSelector.class})
+@EnableAspectJAutoProxy
 @SpringBootApplication
 @EnableScheduling
 @MapperScan("com.blj.mapper")
@@ -63,7 +72,7 @@ public class Application implements ApplicationRunner {
         redisService.put("watch", "10", 20);
     }
 
-    @Value("${spring.profiles.active:}")
+    @Value("${spring.profiles.active}")
     private String profile;
 
     @PostConstruct
@@ -71,5 +80,23 @@ public class Application implements ApplicationRunner {
         logger.warn("===========profile:{}============", profile);
         return null;
     }
+
+    //    @Lazy
+//    @Scope("prototype")
+    @Order(2)
+    @Bean("zhangsan")
+    public User user() {
+        logger.info("user 初始化完成。。。");
+        return new User("张三", 25, "123456");
+    }
+
+    //    @Lazy
+//    @Scope("prototype")
+//    @Order(1)
+//    @Bean("lisi")
+//    public User user2() {
+//        logger.info("user2 初始化完成。。。");
+//        return new User("李四", 25, "123456");
+//    }
 
 }

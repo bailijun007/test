@@ -37,11 +37,16 @@ public class User implements Serializable {
 //    @JsonIgnore
     private String password;
 
+    //对于转换前端传过来的时间，@JsonFormat只适合 Content-Type 为application/json的请求，
+    // 如果是表单请求，请采用@DateTimeFormat
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
+
+
+    private  Boolean deleteFlag;
 
     public User(Long id, String name, Integer age, String password) {
         this.id = id;
@@ -56,6 +61,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+
+
+    public User(String name, Integer age, String password,Boolean deleteFlag) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+        this.deleteFlag = deleteFlag;
+    }
     public User() {}
     public User(Long id) {
         this.id = id;

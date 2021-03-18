@@ -35,7 +35,7 @@ public class SupportBbGroupIdsJobServiceImpl implements SupportBbGroupIdsJobServ
   static    Map<Integer, List<BBSymbol>> map = new ConcurrentHashMap<>();
 
     @Override
-    @Scheduled(cron = "*/1 * * * * *")
+//    @Scheduled(cron = "*/1 * * * * *")
     public Map<Integer, List<BBSymbol>> listSymbols() {
         if (symbols.equals("bb_symbol")) {
             Map<String, BBSymbol> symbolMap = metadataRedisUtil.hgetAll(symbols, BBSymbol.class);
@@ -53,7 +53,7 @@ public class SupportBbGroupIdsJobServiceImpl implements SupportBbGroupIdsJobServ
      * @return USDT__ETC_USDT
      */
     @Override
-    @PostConstruct
+//    @PostConstruct
     public List<BBSymbol> getSymbols() {
         List<BBSymbol> list = new CopyOnWriteArrayList<>();
         if (CollectionUtils.isEmpty(map)){

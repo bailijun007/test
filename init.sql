@@ -7,6 +7,9 @@ CREATE TABLE `t_order` (
 ) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8;
 
 
+ALTER TABLE `boot_test`.`t_order`
+ADD COLUMN `update_time` timestamp(6) NULL COMMENT '修改时间' AFTER `created`;
+
 -- ---------------------------
 
 CREATE TABLE `t_stock` (

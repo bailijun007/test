@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blj.mapper.ExcelMapper">
+
+
+    <cache eviction="LRU" flushInterval="100000" readOnly="true" size="1024"></cache>
+
+    <sql id="Base_Column_List">
+    id,
+</sql>
+    <sql id="simple_where">
+        <where>
+            <if test="id!=null">and id=#{id}</if>
+        </where>
+    </sql>
+
+    <select id="batchSave">
+        insert into t_user (name,create_time )
+        values
+        <foreach collection="uploadList" item="item" index="index" separator=",">
+            (#{item.string},#{item.date})
+        </foreach>
+    </select>
+
+</mapper>

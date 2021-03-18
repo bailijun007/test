@@ -1,6 +1,8 @@
 package com.blj.pojo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * (TOrder)实体类
@@ -24,6 +26,11 @@ public class TOrder implements Serializable {
     * 创建时间
     */
     private Long created;
+
+    /**
+     * 修改时间
+     */
+    private LocalDateTime updateTime;
 
 
     public Integer getId() {
@@ -65,6 +72,15 @@ public class TOrder implements Serializable {
                 ", orderName='" + orderName + '\'' +
                 ", orderUser='" + orderUser + '\'' +
                 ", created=" + created +
+                ", updateTime=" + updateTime +
                 '}';
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 }

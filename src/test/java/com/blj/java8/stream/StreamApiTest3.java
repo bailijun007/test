@@ -1,10 +1,13 @@
 package com.blj.java8.stream;
 
 import com.blj.pojo.User;
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,6 +18,7 @@ import java.util.stream.Collectors;
  * @author BaiLiJun on 2019/12/25 0025
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class StreamApiTest3 {
     List<User> list = Arrays.asList(
@@ -138,7 +142,7 @@ public class StreamApiTest3 {
 
         //最大值，最大年龄人的信息
         Optional<User> maxAgeUser = list.stream().collect(Collectors.maxBy((o1, o2) -> o1.getAge().compareTo(o2.getAge())));
-        System.out.println("年龄最大的人的信息：" + maxAgeUser);
+        System.out.println("年龄最大的人的信息：" + maxAgeUser.get());
 
         //最小值，最小年龄
         Optional<Integer> minAge = list.stream().map(User::getAge).collect(Collectors.minBy(Integer::compare));
@@ -167,7 +171,7 @@ public class StreamApiTest3 {
 
     //分区
     @Test
-    public void test7() {
+    public void testPartitioningBy() {
         Map<Boolean, List<User>> map = list.stream().collect(Collectors.partitioningBy(user -> user.getAge() > 25));
         for (Boolean b : map.keySet()) {
             List<User> users = map.get(b);
@@ -179,6 +183,8 @@ public class StreamApiTest3 {
 
         }
     }
+
+
 
     //聚合 （通过年龄获取聚合数据）
     @Test
@@ -195,9 +201,10 @@ public class StreamApiTest3 {
         System.out.println("年龄最小值：" + collect.getMin());
 
     }
+
     @Test
-    public void testLongSummaryStatistics(){
-        List<Long> startAndEndList=new ArrayList<>();
+    public void testLongSummaryStatistics() {
+        List<Long> startAndEndList = new ArrayList<>();
         startAndEndList.add(1563909600000L);
         startAndEndList.add(1563919800000L);
         startAndEndList.add(1111111111111L);
@@ -215,15 +222,15 @@ public class StreamApiTest3 {
         String s = list.stream().map(User::getName)
                 .collect(Collectors.joining(","));
 
-        System.out.println("把所有姓名以逗号分隔连接起来："+s);
+        System.out.println("把所有姓名以逗号分隔连接起来：" + s);
 
 
         System.out.println("---------------");
 
         String s1 = list.stream().map(User::getName)
-                .collect(Collectors.joining(",","===","==="));
+                .collect(Collectors.joining(",", "===", "==="));
 
-        System.out.println("把所有姓名以自定义方式连接起来："+s1);
+        System.out.println("把所有姓名以自定义方式连接起来：" + s1);
 
 
         //再把字符串转成集合

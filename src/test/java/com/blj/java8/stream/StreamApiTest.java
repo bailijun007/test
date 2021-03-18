@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.EAN;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.stream.Stream;
  * @author BaiLiJun on 2019/12/22 0022
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class StreamApiTest {
 

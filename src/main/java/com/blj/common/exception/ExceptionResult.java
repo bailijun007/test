@@ -1,6 +1,7 @@
 package com.blj.common.exception;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author BaiLiJun on 2020/1/7 0007
@@ -17,4 +18,6 @@ public class ExceptionResult {
         this.timestamp=System.currentTimeMillis();
 
     }
+
+    public ExceptionResult(){}
 }

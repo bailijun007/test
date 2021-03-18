@@ -6,7 +6,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -53,5 +57,47 @@ public class CalendarDemo {
     }
 
 
+
+
+    @Test
+    public void TestIsEffectiveDate() throws ParseException {
+        String format = "yyyy-MM-dd";
+        // Date nowTime = new SimpleDateFormat(format).parse("2020-08-01 09:27:00");
+        Date startTime = new SimpleDateFormat(format).parse("2020-08-01 09:27:00");
+        Date endTime = new SimpleDateFormat(format).parse("2020-10-31 09:27:59");
+        System.out.println(isEffectiveDate(new Date(), startTime, endTime));
+
+    }
+
+    /**
+     * @description: 判断一个时间点是否在一个时间段内，在返回true，不在返回false
+     * @param: nowTime 当前时间
+     * @param: startTime 开始时间
+     * @param: endTime 结束时间
+     * @return: boolean
+     * @author: baiLiJun
+     * @date: 2020/10/28
+     */
+    public  boolean isEffectiveDate(Date nowTime, Date startTime, Date endTime) {
+        if (nowTime.getTime() == startTime.getTime()
+                || nowTime.getTime() == endTime.getTime()) {
+            return true;
+        }
+
+        Calendar date = Calendar.getInstance();
+        date.setTime(nowTime);
+
+        Calendar begin = Calendar.getInstance();
+        begin.setTime(startTime);
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(endTime);
+
+        if (date.after(begin) && date.before(end)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

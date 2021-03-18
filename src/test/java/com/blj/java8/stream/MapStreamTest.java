@@ -4,6 +4,7 @@ import com.blj.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  * @author BaiLiJun  on 2020/2/19
  */
 @SpringBootTest
+@ActiveProfiles("local")
 @RunWith(SpringRunner.class)
 public class MapStreamTest {
 
@@ -44,7 +46,16 @@ public class MapStreamTest {
     @Test
     public void listToMapByNameValue(){
         // value 为对象中的属性
-        Map<Long, String> map = list.stream().collect(Collectors.toMap(User::getId, User::getName));
+        Map<Long, String> map = list.stream().filter(u->u.getId()!=null).collect(Collectors.toMap(User::getId, User::getName));
+        map.forEach((key, value) -> {
+            System.out.println("key: " + key + "    value: " + value);
+        });
+    }
+
+    @Test
+    public void listToConcurrentMappByNameValue(){
+        // value 为对象中的属性
+        Map<Long, String> map = list.stream().filter(u->u.getId()!=null).collect(Collectors.toConcurrentMap(User::getId, User::getName));
         map.forEach((key, value) -> {
             System.out.println("key: " + key + "    value: " + value);
         });

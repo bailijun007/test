@@ -3,6 +3,8 @@
 # Compiled class file
 *.class
 
+.idea
+
 # Log file
 *.log
 
@@ -24,3 +26,23 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+/target/classes/application.properties
+/target/classes/application-dev.properties
+/target/classes/application-local.properties
+/target/classes/mapper/C2cOrderMapper.xml
+/target/classes/ceshi.xlsx
+/target/classes/ceshi4.xlsx
+/target/classes/META-INF/services/com.blj.spi.IParseFile
+/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/target/classes/mapper/ExcelMapper.xml
+/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/target/classes/logback.xml
+/target/classes/mapper/OrderMapper.xml
+/target/classes/mapper/PcAccountMapper.xml
+/target/classes/step1.png
+/target/classes/mapper/StockMapper.xml
+/target/classes/META-INF/test.kotlin_module
+/target/test-classes/META-INF/test.kotlin_module
+/target/classes/mapper/TOrderDao.xml
+/target/classes/mapper/UserMapper.xml
+/.idea/workspace.xml

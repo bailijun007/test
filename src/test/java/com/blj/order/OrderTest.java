@@ -1,7 +1,9 @@
 package com.blj.order;
 
 import com.blj.mapper.OrderMapper;
+import com.blj.mapper.TOrderDao;
 import com.blj.pojo.Order;
+import com.blj.pojo.TOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,6 +29,9 @@ import java.util.Map;
 public class OrderTest {
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private TOrderDao tOrderDao;
 
     @Test
     public void test1() {
@@ -62,6 +68,33 @@ public class OrderTest {
         for (Order order : orders) {
             System.out.println("order = " + order);
         }
+    }
+
+    /**
+     * 数据库类型如果是timestamp类型 ，对应Java可以用LocalDateTime类型
+     *
+     */
+    @Test
+    public void testTimestamp(){
+        TOrder order = new TOrder();
+//        Timestamp timestamp=Timestamp.valueOf(LocalDateTime.now());
+        order.setOrderUser("赵六");
+        order.setUpdateTime(LocalDateTime.now());
+        order.setId(289);
+        int update = tOrderDao.update(order);
+        if(update==1){
+            System.out.println("修改成功！");
+        }else {
+            System.out.println("修改失败");
+        }
+    }
+
+
+    @Test
+    public void testTimestampByquery(){
+        TOrder order = tOrderDao.queryById(289);
+        LocalDateTime updateTime = order.getUpdateTime();
+        System.out.println("updateTime = " + updateTime);
     }
 
 }

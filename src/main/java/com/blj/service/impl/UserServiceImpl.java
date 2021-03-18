@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,10 +30,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getList() {
         Map<String, Object> map = new HashMap<>();
-        map.put("limit",10);
+        map.put("limit", 10);
         List<User> list = userMapper.queryList(map);
         return list;
     }
+
 
     @Override
     public User queryById(Long id) {
@@ -48,8 +51,8 @@ public class UserServiceImpl implements UserService {
         PageResult<User> pageResult = new PageResult<>();
         PageHelper.startPage(pageNo, pageSize);
 
-        Map<String, Object> map=new HashMap<>();
-        map.put("age",age);
+        Map<String, Object> map = new HashMap<>();
+        map.put("age", age);
         List<User> users = userMapper.queryList(map);
         PageInfo<User> info = new PageInfo<>(users);
         pageResult.setList(users)
@@ -58,4 +61,52 @@ public class UserServiceImpl implements UserService {
                 .setRowTotal(info.getTotal());
         return pageResult;
     }
+
+    @Override
+    public User saveUser(User user) {
+        user.setCreateDate(LocalDate.now())
+                .setCreateTime(LocalDateTime.now());
+        userMapper.save(user);
+        User userDto = userMapper.queryByName(user.getName());
+        return userDto;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        //判断该id是否存在
+        User user = userMapper.queryById(id);
+        if (null == user) {
+            throw new TtException(ExceptionEnums.USER_NOT_BE_FIND);
+        }
+        userMapper.deleteById(id);
+    }
+
+
+    /**
+     * 测试@Transactional注解是否能回滚
+     *
+     */
+    @Override
+    public void testTransactional(){
+        User user = userMapper.queryById(3L);
+        LocalDate createDate = user.getCreateDate();
+        if (createDate!=null){
+            user.setCreateDate(LocalDate.now());
+            userMapper.updateById(user);
+        }
+
+        String password = user.getPassword();
+
+       try {
+           // 故意报错
+           password=null;
+           String substring = password.substring(0, 1);
+           System.out.println("substring = " + substring);
+       }catch (Exception e){
+           throw new TtException(ExceptionEnums.DEFAULT_ERROR);
+       }
+
+
+    }
+
 }
