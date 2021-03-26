@@ -1,4 +1,4 @@
-package com.blj.config.mysql;
+package com.blj.config.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
