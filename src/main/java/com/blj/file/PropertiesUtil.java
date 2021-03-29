@@ -1,4 +1,4 @@
-package com.blj.util;
+package com.blj.file;
 
 import org.springframework.util.StringUtils;
 
@@ -15,25 +15,27 @@ import java.util.Map;
 
 public class PropertiesUtil {
 
-    public String url = "E:/config/config.properties";//设置默认的读取文件
+//    public String url = "E:/config/config.properties";//设置默认的读取文件
+
+//    public String url = null;
 
     public Map<Object, Object> map = new HashMap<>();
 
 
-    PropertiesUtil() {
-        read();
+//    PropertiesUtil() {
+//        read();
+//
+//    }
 
-    }
-
-    public PropertiesUtil(String url) {
-        this.url = url;
-        read(url);
+    public PropertiesUtil(String sourceFilePath) {
+//        this.url = url;
+        read(sourceFilePath);
 
 
     }
 
     //更新数据
-    public void upDate(String key, String valuse, String targePath) {
+    public void upDate(String key, String valuse, String sourceFilePath, String targeFilePath) {
 
         String data = setReadFileListener(new ReadFileListener() {
             @Override
@@ -54,18 +56,14 @@ public class PropertiesUtil {
                     return "";
                 }
             }
-        });
-        saveData(data, targePath);
+        }, sourceFilePath);
+        saveData(data, sourceFilePath, targeFilePath);
 
     }
+
 
     //读取默认的url配置文件
-    public void read() {
-        read(url);
-    }
-
-
-    public void read(String url) {
+    public void read(String sourceFilePath) {
         setReadFileListener(new ReadFileListener() {
             @Override
             String setLine(String line) {
@@ -78,12 +76,12 @@ public class PropertiesUtil {
                 }
                 return "";
             }
-        });
+        }, sourceFilePath);
 
     }
 
     //删除数据
-    public void delete(String key, String targePath) {
+    public void delete(String key, String sourcePath, String targePath) {
         String data = setReadFileListener(new ReadFileListener() {
             @Override
             String setLine(String line) {
@@ -100,13 +98,13 @@ public class PropertiesUtil {
                     return data;
                 } else return "";
             }
-        });
-        saveData(data, targePath);
+        }, sourcePath);
+        saveData(data, sourcePath, targePath);
     }
 
     //添加数据
-    public void add(String key, String value) {
-        File file = new File(url);
+    public void add(String key, String value, String targeFilePath) {
+        File file = new File(targeFilePath);
         try {
             FileWriter fileWriter = new FileWriter(file, true);
             fileWriter.write("\n" + key + "=" + value);
@@ -119,10 +117,10 @@ public class PropertiesUtil {
 
 
     //设置文件读取的监听器，每读取一行数据，返回一次回调函数
-    private String setReadFileListener(ReadFileListener readFileListener) {
+    private String setReadFileListener(ReadFileListener readFileListener, String sourceFilePath) {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader(new File(url)));
+            reader = new BufferedReader(new FileReader(new File(sourceFilePath)));
             String tempstr = "";
             String data = "";
             while ((tempstr = reader.readLine()) != null) {
@@ -143,21 +141,13 @@ public class PropertiesUtil {
         return null;
     }
 
-    private void saveData(String data, String targePath) {
+    private void saveData(String data, String sourcePath, String targeFilePath) {
         try {
             FileWriter writer = null;
-            if (StringUtils.isEmpty(targePath)) {
-                writer = new FileWriter(url);
+            if (StringUtils.isEmpty(targeFilePath)) {
+                writer = new FileWriter(sourcePath);
             } else {
-                // 判断是否存着该路径
-                File file = new File(targePath);
-                if (!file.exists() && !file.isDirectory()) {
-                    file .mkdir();
-                }
-                File sourceFile = new File(url);
-                String name = sourceFile.getName();
-                String  newTargePath=targePath+"/"+name;
-                writer = new FileWriter(newTargePath);
+                writer = new FileWriter(targeFilePath);
             }
 
             // 向文件写入内容
@@ -168,7 +158,7 @@ public class PropertiesUtil {
             e.printStackTrace();
         }
         //修改完成后，重新读取，刷新数据
-        read(targePath);
+        read(targeFilePath);
     }
 
 

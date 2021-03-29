@@ -1,12 +1,24 @@
-package com.blj.util;
+package com.blj.file;
+
+import com.blj.Application;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ReadFile {
+    private static final Logger logger = LoggerFactory.getLogger(ReadFile.class);
+
+
     public ReadFile() {
     }
+
     /**
      * 读取某个文件夹下的所有文件
      */
@@ -43,6 +55,37 @@ public class ReadFile {
         }
         return true;
     }
+
+
+    public static Map<String, Object> getFilePath(String filepath) throws FileNotFoundException, IOException {
+        //List<String> list=new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        try {
+
+            File file = new File(filepath);
+            if (file.isDirectory()) {
+                // System.out.println("文件夹");
+                String[] filelist = file.list();
+                for (int i = 0; i < filelist.length; i++) {
+                    File readfile = new File(filepath + "/" + filelist[i]);
+                    if (!readfile.isDirectory()) {
+                        logger.info("文件全路径:{}", filepath + "/" + filelist[i]);
+                        map.put(filepath + "/" + filelist[i], filelist[i]);
+                    } else if (readfile.isDirectory()) {
+                        logger.info("文件夹下有子文件夹");
+                        Map<String, Object> filePath = getFilePath(filepath + "/" + filelist[i]);
+                        map.putAll(filePath);
+                    }
+                }
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("readfile()   Exception:" + e.getMessage());
+        }
+        return map;
+    }
+
 
     /**
      * 删除某个文件夹下的所有文件夹和文件
@@ -82,7 +125,6 @@ public class ReadFile {
                 }
                 return true;
         }*/
-
     public static void main(String[] args) {
         try {
             readfile("E:/config");

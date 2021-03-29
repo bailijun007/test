@@ -1,7 +1,7 @@
-package com.blj.util.test;
+package com.blj.file;
 
 
-import com.blj.util.PropertiesUtil;
+import com.blj.file.PropertiesUtil;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ public class PropertiesUtilTest {
             System.out.println("key: " + key + ", value: " + map.get(key));
             if (key.toString().equals("cr.cms.ip")) {
                 //更新数据
-                util.upDate("cr.cms.ip", "新名字2222","E:/config/properties");
+                util.upDate("cr.cms.ip", "新名字2222","E:/config/config.properties","E:/config/properties");
                 System.out.println(util.get("cr.cms.ip"));
             }
         }
@@ -38,7 +38,7 @@ public class PropertiesUtilTest {
         //删除数据
 //            util.delete("height");
         //增加数据
-        util.add("height", "22222");
+        util.add("height", "22222","E:/config/properties");
 
     }
 
