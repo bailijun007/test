@@ -171,6 +171,19 @@
             <version>1.46</version>
         </dependency>
 
+        <!--yaml文件转properties和properties转yaml-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-properties</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+
     </dependencies>
 
 

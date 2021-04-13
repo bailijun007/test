@@ -10,15 +10,15 @@ public class PropertiesUtilTest {
 
     public static void main(String[] args) {
         //传入路径，初始化配置文件，
-        PropertiesUtil util = new PropertiesUtil("E:/config/config.properties");
+        PropertiesUtil util = new PropertiesUtil("D:/其他/io/config/application.properties");
         Map<Object, Object> map = util.map;
         System.out.println(map);
         for (Object key : map.keySet()) {
             System.out.println("key: " + key + ", value: " + map.get(key));
-            if (key.toString().equals("cr.cms.ip")) {
+            if (key.toString().equals("spring.redis.host")) {
                 //更新数据
-                util.upDate("cr.cms.ip", "新名字2222","E:/config/config.properties","E:/config/properties");
-                System.out.println(util.get("cr.cms.ip"));
+                util.upDate("spring.redis.host", "127.0.0.1","D:/其他/io/config/application.properties","D:/其他/io/copyTemplete/application.properties");
+                System.out.println(util.get("spring.redis.host"));
             }
         }
 
@@ -38,7 +38,7 @@ public class PropertiesUtilTest {
         //删除数据
 //            util.delete("height");
         //增加数据
-        util.add("height", "22222","E:/config/properties");
+       // util.add("height", "22222","D:/其他/io/copyTemplete/application.properties");
 
     }
 

@@ -33,7 +33,11 @@ public class Copyfile {
                         if (propertiesKey.toString().contains("redis") && propertiesKey.toString().contains("port")) {
                         //更新数据
                             util.upDate(propertiesKey.toString(), "6379", key,saveTargetFilePath);
-                            System.out.println(util.get(propertiesKey.toString()));
+                        }
+                        if (propertiesKey.toString().contains("redis") && propertiesKey.toString().contains("host")) {
+                            //更新数据
+                            util.upDate(propertiesKey.toString(), "127.0.0.1", key,saveTargetFilePath);
+
                         }
                     }
                 }
@@ -46,9 +50,11 @@ public class Copyfile {
 
 
     private static void copyFileAndUpdate2() {
-        String targetFile = "E:/file/test/config";
+        // 目标目录地址
+        String targetFile = "D:/其他/io/copyTemplete";
         try {
-            Map<String, Object> map = ReadFile.getFilePath("E:/config");
+            // 查询此目录下所有配置文件 (key:文件路径，value:文件名称)
+            Map<String, Object> map = ReadFile.getFilePath("D:/其他/io/config");
             for (String key : map.keySet()) {
                 String saveTargetFilePath = targetFile + "/" + map.get(key);
                 if (saveTargetFilePath.contains("properties")) {
@@ -56,11 +62,21 @@ public class Copyfile {
                     Map<Object, Object> propertiesMap = util.map;
                     for (Object propertiesKey : propertiesMap.keySet()) {
                         // todo 查询数据库获取正确的配置数据
-                        if (propertiesKey.toString().contains("redis") && propertiesKey.toString().contains("password")) {
+                        if (propertiesKey.toString().equals("spring.redis.host")) {
+                            System.out.println("propertiesKey="+propertiesKey);
                             //更新数据
-                            util.upDate(propertiesKey.toString(), "root123456", key,saveTargetFilePath);
-                            System.out.println(util.get(propertiesKey.toString()));
+                            util.upDate(propertiesKey.toString(), "127.0.0.1", key,saveTargetFilePath);
                         }
+                    }
+                }else {
+                    try {
+                        boolean b = FileControl.copyFile(key, targetFile + "/" + map.get(key));
+                        if (b){
+                            System.out.println("复制文件成功 ！" );
+                        }
+                        // todo FileTranferUtils 把yml转成properties
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
 
