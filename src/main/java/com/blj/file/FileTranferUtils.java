@@ -4,12 +4,10 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLParser;
 
-import java.io.File;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 
 
 /**
@@ -164,8 +162,58 @@ public class FileTranferUtils {
                 System.out.println(line);
             }
 
+            writeToProp(DOT,lines, path);
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private static void writeToProp(String DOT,List<String> lines, String path) {
+        try {
+            File copy_file = new File(path);
+            if (copy_file.isDirectory()) {
+                throw new IOException("文件路径（" + copy_file + "） 错误");
+            }
+            File parent = copy_file.getParentFile();
+            // 创建复制路径
+            if (!parent.exists()) {
+                parent.mkdirs();
+            }
+            // 创建复制文件
+            if (!copy_file.exists()) {
+                copy_file.createNewFile();
+            }
+
+//            FileInputStream fis = new FileInputStream(copy_file);
+//            FileOutputStream fos = new FileOutputStream(copy_file);
+
+//            BufferedInputStream bis = new BufferedInputStream(fis);
+//            BufferedOutputStream bos = new BufferedOutputStream(fos);
+//            int index;
+//            while ((index = bis.read(bytes)) != -1) {
+//                bos.write(bytes, 0, index);
+//            }
+            for (String line : lines) {
+                line = line.replace(DOT, ".");
+                String[] split = line.split("=");
+                add(split[0],split[1],path);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //添加数据
+    public static void add(String key, String value, String targeFilePath) {
+        File file = new File(targeFilePath);
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write("\n" + key + "=" + value);
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
