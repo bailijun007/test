@@ -178,10 +178,11 @@ public class BigDecimalTest2 {
     @Test
     public void test12() {
         BigDecimal bigDecimal = new BigDecimal("456");
-         BigDecimal divide = bigDecimal.divide(new BigDecimal("1"), 4);
+        BigDecimal divide = bigDecimal.divide(new BigDecimal("1"), 4);
 
         System.out.println("divide = " + divide);
 
     }
+
 
 }
